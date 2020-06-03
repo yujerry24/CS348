@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import DataTable from './ui/DataTable';
 import Input from './ui/Input';
 import Button from './ui/SubmitButton';
@@ -33,7 +33,6 @@ class App extends Component {
         <DataTable headings={headings} rows={rows} />
       </div>
     );
-  }
 }
 
 export default App;
