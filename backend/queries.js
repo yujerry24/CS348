@@ -1,16 +1,15 @@
+require('dotenv').config()
 const Pool = require('pg').Pool
-// idk what this is. fill in the credentials i guess?
 const pool = new Pool({
-  user: 'me',
-  host: 'localhost',
-  database: 'api',
-  password: 'password',
-  port: 5432,
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DATABASE,
+  password: process.env.POSTGRES_PASSWORD,
+  port: process.env.POSTGRES_PORT,
 })
 
-const getUsers = (request, response) => {
-  // this is temporary, fill in the actual query here
-  pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+const getPlaylist1 = (request, response) => {
+  pool.query('SELECT * FROM playlist1', (error, results) => {
     if (error) {
       throw error
     }
@@ -18,6 +17,6 @@ const getUsers = (request, response) => {
   })
 }
 
-module.export = {
-  getUsers,
+module.exports = {
+  getPlaylist1,
 }
