@@ -5,6 +5,7 @@ const cors = require('cors');
 const db = require('./queries')
 const PORT = 4000;
 
+app.set('port', PORT);
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -19,6 +20,8 @@ app.get('/', (request, response) => {
 })
 
 app.get('/playlist1', db.getPlaylist1);
+
+app.use('/playlist1', db.getPlaylist1);
 
 app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);
