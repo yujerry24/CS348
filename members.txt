@@ -1,6 +1,5 @@
-Jackie Chen: 	Wrote parts of the report, Created the react app, set up base for back-end
-Thomas Cheng: 	Found the dataset, Wrote parts of the report, fetched and formatted initial DB query on front-end
-Hannah Li: 	Proposed idea, Wrote parts of the report, set up endpoint for initial DB query
-Frank Wu: 	Wrote parts of the report, Set up the DB on GCP and enabled teammates to modify it
-Jerry Yu: 	Wrote parts of the report, Created a Github repo for collaboration, added env variables for DB credentials
-
+Jackie Chen:    Wrote parts of the report, Created the react app, set up base for back-end
+Thomas Cheng:   Found the dataset, Wrote parts of the report, built the front-end
+Hannah Li:      Proposed idea, Wrote parts of the report, set up endpoint for initial DB query, deployed backend to google cloud app engine and linked with database
+Frank Wu:       Wrote parts of the report, Set up the DB on GCP and enabled teammates to modify it, deployed backend to google cloud app engine and linked with database
+Jerry Yu:       Wrote parts of the report, Created a Github repo for collaboration, added env variables for DB credentials, deployed backend to Heroku
