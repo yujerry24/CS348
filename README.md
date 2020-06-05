@@ -3,9 +3,9 @@
 ## Setup Instructions:
 
 1. Make sure that you have Node.js installed.
-2. In a terminal run  <br />
-	a) 'npm install` <br />
-	b) `node index.js` or `npm start` <br />
+2. In a terminal run 
+	a) 'npm install` 
+	b) `node index.js` or `npm start` 
 3. Next, go to your web browser and navigate to https://localhost:3000
 4. You will see a table with filler data
 5. Click on the button to get the database data
