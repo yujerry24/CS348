@@ -4,7 +4,7 @@
 
 1. Make sure that you have Node.js installed.
 2. In a terminal run 
-	a) 'npm install` 
+	a) `npm install` 
 	b) `node index.js` or `npm start` 
 3. Next, go to your web browser and navigate to https://localhost:3000
 4. You will see a table with filler data
