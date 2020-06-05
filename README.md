@@ -3,15 +3,12 @@
 ## Setup Instructions:
 
 1. Make sure that you have Node.js installed.
-2. On a seperate terminal, go to the `backend` folder
-	a) Run `npm install`
-	b) Run `node index.js`
-3. On another terminal, go to the `cs348-frontend` folder
-	a) Run `npm install`
-	b) Run `npm start`
-4. Next, go to your web browser and navigate to https://localhost:3000
-5. You will see a table with filler data
-6. Click on the button to get the database data
+2. In a terminal run 
+	a) 'npm install`
+	b) `node index.js` or `npm start`
+3. Next, go to your web browser and navigate to https://localhost:3000
+4. You will see a table with filler data
+5. Click on the button to get the database data
 
 
 ## Brief Technology Stack Explanation
