@@ -22,12 +22,45 @@ const getPlaylist1 = (request, response) => {
 }
 
 /*
+* /song/:text
+*/
+const songSearch = (req, response) => {
+  pool
+    .query(`
+      (SELECT * FROM playlist1 WHERE LOWER(title) LIKE LOWER('%${req.params.text}%') LIMIT 20)
+      UNION
+      (SELECT * FROM playlist1 WHERE LOWER(artist) LIKE LOWER('%${req.params.text}%') LIMIT 20)
+    `)
+    // .query(`
+    //     (SELECT S.songId, S.name, S.length, A.name
+    //     FROM Song S
+    //       INNER JOIN Wrote W ON S.songId = W.songId
+    //       INNER JOIN Artist A ON W.artistId = A.artistId
+    //     WHERE LOWER(S.name) LIKE LOWER('%${req.params.text}%') 
+    //     LIMIT 20)
+    //     UNION
+    //      (SELECT S.songId, S.name, S.length, A.name
+    //     FROM Song S
+    //       INNER JOIN Wrote W ON S.songId = W.songId
+    //       INNER JOIN Artist A ON W.artistId = A.artistId
+    //     WHERE LOWER(A.name) LIKE LOWER('%${req.params.text}%') 
+    //     LIMIT 20)
+    //   `)
+    .then(results => 
+      response.status(200).json(results.rows))
+    .catch(error => {
+      console.log(error);
+      response.status(400).send(`An error occured during the query`)
+    })
+}
+
+/*
 * /song/songName/:name
 */
 const songByName = (req, response) => {
   pool
-    .query(`SELECT * FROM playlist1 WHERE title LIKE '%${req.params.name}%' LIMIT 20`)
-    // .query(`SELECT * FROM Songs WHERE title LIKE '%${req.params.name}%' LIMIT 20`)
+    .query(`SELECT * FROM playlist1 WHERE LOWER(title) LIKE LOWER('%${req.params.name}%') LIMIT 20`)
+    // .query(`
     //     SELECT S.songId, S.name, S.length, A.name
     //     FROM Song S
     //       INNER JOIN Wrote W ON S.songId = W.songId
@@ -48,7 +81,7 @@ const songByName = (req, response) => {
 */
 const songByArtist = (req, response) => {
   pool
-    .query(`SELECT * FROM playlist1 WHERE artist LIKE '%${req.params.name}%' LIMIT 20`)
+    .query(`SELECT * FROM playlist1 WHERE LOWER(artist) LIKE LOWER('%${req.params.name}%') LIMIT 20`)
     // .query(`
     //     SELECT S.songId, S.name, S.length, A.name
     //     FROM Song S
@@ -131,6 +164,7 @@ const listPlaylists = (req, response) => {
 module.exports = {
   getPlaylist1,
   songQueries: {
+    songSearch,
     songByName,
     songByArtist
   },

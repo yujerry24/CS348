@@ -3,6 +3,7 @@ var router = express.Router()
 
 var { songQueries } = require('../queries')
 
+router.get('/:text', songQueries.songSearch);
 router.get('/songName/:name', songQueries.songByName);
 router.get('/artist/:name', songQueries.songByArtist);
 
