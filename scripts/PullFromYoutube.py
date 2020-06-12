@@ -1,8 +1,9 @@
 import json
 import requests
 
-key = 'ya29.a0AfH6SMCMhKO_ZL6z3vp4JJVDD7bHXflcrPwUPkWUqyAIFK-sWuHaPlZormKGx1qd_TwS5aWBb5rh1LfczJ5aNziFGXcaOtH6JaEpDgzBCW1QaMcs_dIk_AU_vn39yr-zyK386mNr0mZQZYInIWtvPmaxwlJBt3bocSzg_0MV8g'
-apikey = "AIzaSyDcaZ2egOmTqJ97-ymDs3QUhjorgMsYcIM"
+key = 'ya29.a0AfH6SMA5bl_I963L2Wd_7ZE34hbz_V3TvWtz5JecYAt9P4Wc1gql6aKM7FKILtvz29_DlcmcD1MJLSXirzSt2P3620q4bX3mXwIden6X4UVjEfRzFpBZMPlg0wTlfkdpOTrP1OHGXuOeKac8MQc5Wtpj4VjZvbP1e-fpNDXt'
+# apikey = "AIzaSyDcaZ2egOmTqJ97-ymDs3QUhjorgMsYcIM"
+apikey = "AIzaSyDfbNrqCcb6zfeHubhuUkyC7KOTEzlFRcE"
 headers = { 'Authorization': 'Bearer ' + key}
 
 with open("DATA/ForYT.json", "r") as f:
@@ -22,7 +23,7 @@ for index, song in enumerate(songs):
             params={'part': 'snippet', 
                     'key': apikey,
                     'maxResults': 1,
-                    'fields' : "items(id(videoId),snippet(title))"
+                    'fields' : "items(id(videoId),snippet(title))",
                     'q': query}
         )
         if req.status_code != 200: 
