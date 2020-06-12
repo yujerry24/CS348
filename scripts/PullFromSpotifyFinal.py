@@ -1,7 +1,7 @@
 import json
 import requests
 
-key = "BQBERzYn-bqq4gSuR_WTwJ8LuaDHc7kT3lygnrKYuEIbWf8nkbMZYQa5r9n3EedJxjqIeU81KAt_drwNxILb4Iclsg3fQC54lvBssOGvCulIwQU8oTMbYtdhO1UZLR861t2En4Ljb3EH2Pui_LDUaJlixa5hgXw"
+key = "BQCKsLwtKS3xD-l0_R1nTc_v8G5_ohZkbXYs8-a3WGpMphRnlDaHH-UAVYd9cwzkeYKW9IhtO3pjVKOI3IiG6enIGYc_YCKnHk2fMtuhr8tcXnialW5-svXb2bwQNuACpnH0yyD1wPCrnyNQHuN7f9_WIWM-x4E"
 headers = { 'Authorization': 'Bearer ' + key}
 
 with open("DATA/playlists.json", "r") as f:
@@ -49,14 +49,14 @@ for index, playlist in enumerate(playlists):
     req = req.json()
     tracks = req['items']
     for track in tracks:
-        songId = track['track']['id']
-        if songId not in songs.keys():
+        _songId = track['track']['id']
+        if _songId not in songs.keys():
             _songName = track['track']['name']
             songNumber = track['track']['track_number']
             discNumber =  track['track']['disc_number']
-            songs[songId] = {}
-            songs[songId]['name'] = _songName
-            songs[songId]['pop'] = track['track']['popularity']
+            songs[_songId] = {}
+            songs[_songId]['name'] = _songName
+            songs[_songId]['pop'] = track['track']['popularity']
         
             songArtists = []
             for index, songArtist in enumerate(track['track']['artists']):
@@ -66,7 +66,7 @@ for index, playlist in enumerate(playlists):
                 if index == 0:
                     _artistName = artists[artistId]
                 songArtists.append(artistId)
-            wroteSongs[songId] = songArtists
+            wroteSongs[_songId] = songArtists
 
             albumId = track['track']['album']['id']
             if albumId not in albums.keys():
@@ -82,8 +82,8 @@ for index, playlist in enumerate(playlists):
                     albumArtists.append(artistId)
                 wroteAlbums[albumId] = albumArtists
             
-            inAlbum[songId] = dict(albumId=albumId, songNum=songNumber, discNum=discNumber)
-            forYT.append(dict(name=_songName, artistName=_artistName))
+            inAlbum[_songId] = dict(albumId=albumId, songNum=songNumber, discNum=discNumber)
+            forYT.append(dict(name=_songName, artistName=_artistName, songid=_songId))
 
 with open("DATA/ForYT.json", "w+") as f:
     json.dump(forYT, f)
