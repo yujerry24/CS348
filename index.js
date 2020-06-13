@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 
-const { getPlaylist1 } = require('./queries');
+const { getPlaylist1, addSongPlaylist1, removeSongPlaylist1 } = require('./queries');
 const song = require('./endpoints/song');
 const playlist = require('./endpoints/playlist');
 
@@ -23,6 +23,8 @@ app.get('/', (request, response) => {
 })
 
 app.get('/playlist1', getPlaylist1);
+app.post('/playlist1', addSongPlaylist1);
+app.delete('/playlist1', removeSongPlaylist1);
 
 // app.use('/playlist1', db.getPlaylist1); -- don't think this is necessary, but leaving here for now in case I'm wrong
 

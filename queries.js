@@ -22,6 +22,35 @@ const getPlaylist1 = (request, response) => {
 }
 
 /*
+* /playlist1
+*/
+const addSongPlaylist1 = (req, response) => {
+  pool
+    .query(`INSERT INTO playlist1 (artist, title, year) VALUES ('${req.body.artist}','${req.body.title}', ${req.body.year})`)
+    .then(results => {
+      console.log(results)
+      response.status(200).send('Successful insert')
+    })
+    .catch(error => {
+      console.log(error);
+      response.status(400).json(error)
+    })
+}
+
+/*
+* /playlist1
+*/
+const removeSongPlaylist1 = (req, response) => {
+  pool
+    .query(`DELETE FROM playlist1 WHERE artist='${req.body.artist}' AND title='${req.body.title}'`)
+    .then(results => response.status(200).json(results.rows))
+    .catch(error => {
+      console.log(error);
+      response.status(400).json(error)
+    })
+  }
+
+/*
 * /song/:text
 */
 const songSearch = (req, response) => {
@@ -163,6 +192,8 @@ const listPlaylists = (req, response) => {
 
 module.exports = {
   getPlaylist1,
+  addSongPlaylist1,
+  removeSongPlaylist1,
   songQueries: {
     songSearch,
     songByName,
