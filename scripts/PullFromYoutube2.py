@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 with open("DATA/ForYT.json", "r") as f:
     songs = json.load(f)
     print("ForYT Done")
+print("SIZE: " + str(len(songs)))
 
 with open("DATA/Videos2.json", "r") as f:
     videos = json.load(f)
@@ -16,7 +17,7 @@ for index, song in enumerate(songs):
     songid = song['songid']
     if songid not in videos.keys():
         found = False
-        for i in range(5):
+        for i in range(10):
             strings = song['name'].split(" ")
             if type(strings) != list:
                 strings = [strings]
@@ -32,17 +33,19 @@ for index, song in enumerate(songs):
             req = requests.get(link)
             if req.status_code != 200: 
                 print("QUERY {} {}".format(index, query))
-                print(req.json())
                 break
 
             soup = BeautifulSoup(req.text, 'html.parser')
 
             try:
                 element = soup.find_all("ol", class_="item-section")[0].find("h3", class_="yt-lockup-title")
+                if str(element).find("Duration") == -1:
+                    print("Bad HTML")
+                    continue
                 found = True
                 break
             except Exception as e:
-                print(e)
+                print("Fetch Error: " + str(e))
                 time.sleep(0.25)
         if not found:
             print("Fail on " + link)
@@ -64,7 +67,7 @@ for index, song in enumerate(songs):
             durationText2 = durationText[colonIndex + 2 : -1]
             split = durationText2.split(":")
         except Exception as e:
-            print(e)
+            print("Process Error: " + str(e))
             continue
 
         if len(split) == 2:
