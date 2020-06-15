@@ -22,6 +22,7 @@ const getPlaylist1 = (request, response) => {
 }
 
 /*
+* POST
 * /playlist1
 */
 const addSongPlaylist1 = (req, response) => {
@@ -38,6 +39,7 @@ const addSongPlaylist1 = (req, response) => {
 }
 
 /*
+* DELETE
 * /playlist1
 */
 const removeSongPlaylist1 = (req, response) => {
@@ -53,7 +55,7 @@ const removeSongPlaylist1 = (req, response) => {
 /*
 * /song/:text
 */
-const songSearch = (req, response) => {
+const songSearchText = (req, response) => {
   pool
     .query(`
       (SELECT * FROM playlist1 WHERE LOWER(title) LIKE LOWER('%${req.params.text}%') LIMIT 20)
@@ -61,17 +63,17 @@ const songSearch = (req, response) => {
       (SELECT * FROM playlist1 WHERE LOWER(artist) LIKE LOWER('%${req.params.text}%') LIMIT 20)
     `)
     // .query(`
-    //     (SELECT S.songId, S.name, S.length, A.name
-    //     FROM Song S
-    //       INNER JOIN Wrote W ON S.songId = W.songId
-    //       INNER JOIN Artist A ON W.artistId = A.artistId
+    //     (SELECT S.song_id, S.name, S.song_length, A.name
+    //     FROM song S
+    //       INNER JOIN wrote W ON S.song_id = W.song_id
+    //       INNER JOIN artist A ON W.artist_id = A.artist_id
     //     WHERE LOWER(S.name) LIKE LOWER('%${req.params.text}%') 
     //     LIMIT 20)
     //     UNION
-    //      (SELECT S.songId, S.name, S.length, A.name
-    //     FROM Song S
-    //       INNER JOIN Wrote W ON S.songId = W.songId
-    //       INNER JOIN Artist A ON W.artistId = A.artistId
+    //      (SELECT S.song_id, S.name, S.song_length, A.name
+    //     FROM song S
+    //       INNER JOIN wrote W ON S.song_id = W.song_id
+    //       INNER JOIN artist A ON W.artist_id = A.artist_id
     //     WHERE LOWER(A.name) LIKE LOWER('%${req.params.text}%') 
     //     LIMIT 20)
     //   `)
@@ -84,59 +86,16 @@ const songSearch = (req, response) => {
 }
 
 /*
-* /song/songName/:name
-*/
-const songByName = (req, response) => {
-  pool
-    .query(`SELECT * FROM playlist1 WHERE LOWER(title) LIKE LOWER('%${req.params.name}%') LIMIT 20`)
-    // .query(`
-    //     SELECT S.songId, S.name, S.length, A.name
-    //     FROM Song S
-    //       INNER JOIN Wrote W ON S.songId = W.songId
-    //       INNER JOIN Artist A ON W.artistId = A.artistId
-    //     WHERE S.name LIKE '%${req.params.name}%' 
-    //     LIMIT 20
-    //   `)
-    .then(results => 
-      response.status(200).json(results.rows))
-    .catch(error => {
-      console.log(error);
-      response.status(400).json(error)
-    })
-}
-
-/*
-* /song/artist/:name
-*/
-const songByArtist = (req, response) => {
-  pool
-    .query(`SELECT * FROM playlist1 WHERE LOWER(artist) LIKE LOWER('%${req.params.name}%') LIMIT 20`)
-    // .query(`
-    //     SELECT S.songId, S.name, S.length, A.name
-    //     FROM Song S
-    //       INNER JOIN Wrote W ON S.songId = W.songId
-    //       INNER JOIN Artist A ON W.artistId = A.artistId
-    //     WHERE A.name LIKE '%${req.params.name}%' 
-    //     LIMIT 20
-    //   `)
-    .then(results => 
-      response.status(200).json(results.rows))
-    .catch(error => {
-      console.log(error);
-      response.status(400).json(error)
-    })
-}
-
-/*
+* GET
 * /playlist/:playlistId
 */
 const getPlaylist = (req, response) => {
   pool
     .query(`
-        SELECT songId, name, length
-        FROM Song 
-          INNER JOIN InPlaylist ON Song.song_id = InPlaylist.song_id
-        WHERE InPlaylist.playListId = ${req.params.playlistId}
+        SELECT song_id, name, song_length
+        FROM song 
+          INNER JOIN in_playlist ON song.song_id = in_playlist.song_id
+        WHERE in_playlist.playlist_id = ${req.params.playlistId}
       `)
     .then(results => { response.status(200).json(results.rows) })
     .catch(error => {
@@ -146,11 +105,12 @@ const getPlaylist = (req, response) => {
 }
 
 /*
-* /playlist/:playlistId/add/:songId
+* POST
+* /playlist/:playlistId/:songId
 */
 const addSong = (req, response) => {
   pool
-    .query(`INSERT INTO InPlaylist (songId, playlistId) (${req.params.songId}, ${req.params.playlistId})`)
+    .query(`INSERT INTO in_playlist (song_id, playlist_id) (${req.params.songId}, ${req.params.playlistId})`)
     .then(results => response.status(200).json(results.rows))
     .catch(error => {
       console.log(error);
@@ -159,11 +119,12 @@ const addSong = (req, response) => {
 }
 
 /*
-* /playlist/:playlistId/remove/:songId
+* DELETE
+* /playlist/:playlistId/:songId
 */
 const removeSong = (req, response) => {
   pool
-    .query(`DELETE FROM InPlaylist WHERE songId=${req.params.songId} AND playlistId=${req.params.playlistId})`)
+    .query(`DELETE FROM in_playlist WHERE song_id=${req.params.songId} AND playlist_id=${req.params.playlistId})`)
     .then(results => response.status(200).json(results.rows))
     .catch(error => {
       console.log(error);
@@ -172,15 +133,15 @@ const removeSong = (req, response) => {
   }
     
 /*
-* /filter/playlist/:userId
+* GET
+* /playlist/list/:userId
 */
 const listPlaylists = (req, response) => {
   pool
     .query(`
-        SELECT P.name 
-        FROM Playlist
-          INNER JOIN Created ON Playlist.playlistId = Created.playlistId
-        WHERE Created.userId = ${req.params.userId}
+        SELECT name 
+        FROM playlist
+        WHERE user_Id = ${req.params.userId}
       `)
     .then(results => 
       response.status(200).json(results.rows))
@@ -195,9 +156,7 @@ module.exports = {
   addSongPlaylist1,
   removeSongPlaylist1,
   songQueries: {
-    songSearch,
-    songByName,
-    songByArtist
+    songSearchText
   },
   playlistQueries: {
     getPlaylist,

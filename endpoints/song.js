@@ -3,8 +3,10 @@ var router = express.Router()
 
 var { songQueries } = require('../queries')
 
-router.get('/:text', songQueries.songSearch);
-router.get('/songName/:name', songQueries.songByName);
-router.get('/artist/:name', songQueries.songByArtist);
+router.get('/:text', songQueries.songSearchText);
+
+// Future endpoints:
+//    /popularity             GET      getPopular
+//    /mostPlaylist ????      GET       inMostPlaylists
 
 module.exports = router

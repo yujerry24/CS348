@@ -4,13 +4,13 @@ var router = express.Router()
 var { playlistQueries } = require('../queries')
 
 router.get('/:playlistId', playlistQueries.getPlaylist);
-router.post('/:playlistId/add/:songId', playlistQueries.addSong);
-router.delete('/:playlistId/remove/:songId', playlistQueries.removeSong);
+router.post('/:playlistId/:songId', playlistQueries.addSong);
+router.delete('/:playlistId/:songId', playlistQueries.removeSong);
 router.get('/list/:userId', playlistQueries.listPlaylists);
 
 // Future endpoints:
-//    /playlist/new
-//    /playlist/delete/:playlistId
-//    /playlist/rename/:playlistId
+//    /playlist               POST      createPlaylist
+//    /playlist/:playlistId   DELETE    deletePlaylist
+//    /playlist/:playlistId   PATCH     renamePlaylist
 
 module.exports = router

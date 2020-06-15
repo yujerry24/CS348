@@ -32,11 +32,9 @@ app.use('/song', song);
 app.use('/playlist', playlist);
 
 // Future endpoints:
-//    /artist/songName/:name -- find artists that wrote songs with some name
-//    /artist/artist/:name -- find artists by their name
+//    /artist/:text -- find artists by searching text (will look by artist name, song name, and album name)
 
-//    /album/songName/:name -- find albums by names of songs in them
-//    /album/artist/:name -- find albums by artist name
+//    /album/:text -- find albums by searching text (will look by artist name, song name, and album name)
 
 app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);
