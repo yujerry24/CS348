@@ -2,18 +2,18 @@
 
 CREATE TABLE album (
     album_id VARCHAR(30) NOT NULL PRIMARY KEY,
-    name VARCHAR(30),
+    name VARCHAR(100),
     release_date DATE
 )
 
 CREATE TABLE artist (
     artist_id VARCHAR(30) NOT NULL PRIMARY KEY,
-    name VARCHAR(30)
+    name VARCHAR(100)
 )
 
 CREATE TABLE song (
     song_id VARCHAR(30) NOT NULL PRIMARY KEY,
-    name VARCHAR(30),
+    name VARCHAR(100),
     song_length INT,
     popularity INT,
     youtube_id VARCHAR(30),
@@ -25,7 +25,7 @@ CREATE TABLE song (
 
 CREATE TABLE playlist (
     playlist_id VARCHAR(30) NOT NULL PRIMARY KEY,
-    name VARCHAR(30),
+    name VARCHAR(100),
     views INT,
     user_id VARCHAR(30)
     FOREIGN KEY(user_id) REFERENCES [user]
@@ -33,7 +33,7 @@ CREATE TABLE playlist (
 
 CREATE TABLE [user] (
     user_id VARCHAR(30) NOT NULL PRIMARY KEY,
-    name VARCHAR(30)
+    name VARCHAR(100)
 )
 
 -- relationship sets
