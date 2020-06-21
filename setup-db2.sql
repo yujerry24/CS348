@@ -24,15 +24,15 @@ CREATE TABLE song (
 );
 
 CREATE TABLE playlist (
-    playlist_id VARCHAR(30) NOT NULL PRIMARY KEY,
+    playlist_id VARCHAR(50) NOT NULL PRIMARY KEY,
     name VARCHAR(100),
     views INT,
-    user_id VARCHAR(30),
+    user_id VARCHAR(50),
     FOREIGN KEY(user_id) REFERENCES "user"
 );
 
 CREATE TABLE "user" (
-    user_id VARCHAR(30) NOT NULL PRIMARY KEY,
+    user_id VARCHAR(50) NOT NULL PRIMARY KEY,
     name VARCHAR(100)
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE wrote (
 
 CREATE TABLE in_playlist (
     song_id VARCHAR(30) NOT NULL,
-    playlist_id VARCHAR(30) NOT NULL,
+    playlist_id VARCHAR(50) NOT NULL,
     PRIMARY KEY(song_id, playlist_id),
     FOREIGN KEY(song_id) REFERENCES song,
     FOREIGN KEY(playlist_id) REFERENCES playlist

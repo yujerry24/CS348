@@ -1,0 +1,24 @@
+        song_id         |          song_name          | video_duration | artist_name
+------------------------+-----------------------------+----------------+--------------
+ 0SdMLlsw5FOEbHJmJs8aUA | Boy With Luv                |            325 | Smyang Piano
+ 2oqbLpgVM4sCN34TeNBYEP | LUV                         |            243 | Apink
+ 44gWm1spxejf9cc589qV28 | Boy in Luv                  |            283 | BTS
+ 5KawlOMHjWeUjQtnuRs22c | Boy With Luv (feat. Halsey) |            253 | BTS
+ 2d0SxR0z1n1qxDbqYUXKs9 | I LUV IT                    |            200 | PSY
+(5 rows)
+
+        song_id         |  song_name   | video_duration | artist_name
+------------------------+--------------+----------------+--------------
+ 0u7aRGM7YmvtsmG5NSrNsO | Feel Special |            221 | TWICE
+ 7uvW1F97LfVbOF6bzHs3nO | Deja Vu      |            227 | DREAMCATCHER
+ 44gWm1spxejf9cc589qV28 | Boy in Luv   |            283 | BTS
+(3 rows)
+
+INSERT 0 1
+
+DELETE 0
+
+             playlist_id              |        name
+--------------------------------------+--------------------
+ 8092bcc7-37ee-4114-bc5e-eac125b3bb9b | Timothy's Playlist
+(1 row)

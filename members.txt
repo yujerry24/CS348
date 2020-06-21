@@ -1,5 +1,41 @@
-Jackie Chen:    Wrote parts of the report, Created the react app, set up base for back-end
-Thomas Cheng:   Found the dataset, Wrote parts of the report, built the front-end
-Hannah Li:      Proposed idea, Wrote parts of the report, set up endpoint for initial DB query, deployed backend to google cloud app engine and linked with database
-Frank Wu:       Wrote parts of the report, Set up the DB on GCP and enabled teammates to modify it, deployed backend to google cloud app engine and linked with database
-Jerry Yu:       Wrote parts of the report, Created a Github repo for collaboration, added env variables for DB credentials, deployed backend to Heroku
+Jackie Chen:    
+- Wrote parts of the report
+- Created the react app
+- Set up base for back-end
+- Worked on drawing the E/R diagram
+- Translated the E/R diagram into a database schema
+- Wrote the sql commands to create the database
+
+Thomas Cheng:
+- Found the dataset
+- Wrote parts of the report
+- Built the initial front-end
+- Worked on drawing the E/R diagram
+- Added appropriate api calls to the front-end
+- Created navigation between searching for songs vs viewing a playlist
+
+Hannah Li:
+- Proposed idea
+- Wrote parts of the report
+- Set up endpoint for initial DB query
+- Worked on drawing the E/R diagram
+- Deployed backend to google cloud app engine and linked with database
+- Wrote sql queries that are necessary for the basic features of the application
+- Implemented the queries in api endpoints
+
+Frank Wu:
+- Wrote parts of the report
+- Set up the DB on GCP and enabled teammates to modify it
+- Deployed backend to google cloud app engine and linked with database
+- Worked on drawing the E/R diagram
+- Wrote scripts to gather the dataset from various sources
+- Merged the data and stored it in a format similar to the database schema
+
+Jerry Yu:
+- Wrote parts of the report
+- Created a Github repo for collaboration
+- Added env variables for DB credentials
+- Deployed backend to Heroku
+- Worked on drawing the E/R diagram
+- Ran the sql commands to create the database
+- Dumped the data into the database
