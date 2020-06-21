@@ -65,16 +65,16 @@ const songSearchText = (req, response) => {
         FROM song S
           INNER JOIN wrote W ON S.song_id = W.song_id
           INNER JOIN artist A ON W.artist_id = A.artist_id
-        WHERE LOWER(S.name) LIKE LOWER('%${req.params.text}%') 
+        WHERE LOWER(S.name) LIKE LOWER($1::text) 
         LIMIT 20)
         UNION
          (SELECT S.song_id, S.name, S.video_duration, A.name
         FROM song S
           INNER JOIN wrote W ON S.song_id = W.song_id
           INNER JOIN artist A ON W.artist_id = A.artist_id
-        WHERE LOWER(A.name) LIKE LOWER('%${req.params.text}%') 
+        WHERE LOWER(A.name) LIKE LOWER($1::text) 
         LIMIT 20)
-      `)
+      `, [`%${req.params.text}%`])
     .then(results => 
       response.status(200).json(results.rows))
     .catch(error => {
@@ -95,8 +95,8 @@ const getPlaylist = (req, response) => {
           INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
           INNER JOIN wrote W ON S.song_id = W.song_id
           INNER JOIN artist A ON W.artist_id = A.artist_id
-        WHERE in_playlist.playlist_id = '${req.params.playlistId}'
-      `)
+        WHERE in_playlist.playlist_id = $1::text
+      `, [req.params.playlistId])
     .then(results => { response.status(200).json(results.rows) })
     .catch(error => {
         console.log(error);
@@ -110,7 +110,7 @@ const getPlaylist = (req, response) => {
 */
 const addSong = (req, response) => {
   pool
-    .query(`INSERT INTO in_playlist VALUES ('${req.params.songId}', '${req.params.playlistId}')`)
+    .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [req.params.songId, req.params.playlistId])
     .then(results => response.status(200).json(results.rows))
     .catch(error => {
       console.log(error);
@@ -124,7 +124,7 @@ const addSong = (req, response) => {
 */
 const removeSong = (req, response) => {
   pool
-    .query(`DELETE FROM in_playlist WHERE song_id='${req.params.songId}' AND playlist_id='${req.params.playlistId}'`)
+    .query(`DELETE FROM in_playlist WHERE song_id = $1::text AND playlist_id = $2::text`, [req.params.songId, req.params.playlistId])
     .then(results => response.status(200).json(results.rows))
     .catch(error => {
       console.log(error);
@@ -141,8 +141,8 @@ const listPlaylists = (req, response) => {
     .query(`
         SELECT playlist_id, name 
         FROM playlist
-        WHERE user_Id = '${req.params.userId}'
-      `)
+        WHERE user_id = $1::text
+      `, [req.params.userId])
     .then(results => 
       response.status(200).json(results.rows))
     .catch(error => {
