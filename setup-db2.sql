@@ -14,11 +14,11 @@ CREATE TABLE artist (
 CREATE TABLE song (
     song_id VARCHAR(30) NOT NULL PRIMARY KEY,
     name VARCHAR(100),
-    song_length INT,
+    video_duration INT,
     popularity INT,
-    youtube_id VARCHAR(30),
+    video_id VARCHAR(30),
     album_id VARCHAR(30),
-    track_num INT,
+    song_num INT,
     disc_num INT,
     FOREIGN KEY(album_id) REFERENCES album
 )
