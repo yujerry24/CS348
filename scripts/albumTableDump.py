@@ -9,7 +9,7 @@ import json
 import csv 
 
 
-with open("DATA/wroteSongs.json", "r") as f:
+with open("DATA/albums.json", "r") as f:
     albumData = json.load(f)
     print("albumData Done")
 print("SIZE: " + str(len(albumData)))
@@ -17,8 +17,14 @@ print("SIZE: " + str(len(albumData)))
 
 newDict = []
 for key in albumData:
-        newDict.append({'artist_id' : albumData[key][0],
-                        'song_id' : key})
+    if len(albumData[key]["release"]) == 4:
+        newDict.append({'artist_id' : key,
+                        'name' : albumData[key]["name"],
+                       'release' : albumData[key]["release"]+"-01-01"})
+    else :
+        newDict.append({'artist_id' : key,
+                        'name' : albumData[key]["name"],
+                       'release' : albumData[key]["release"]})
 
 with open("DATA/wroteTable.json", "w+") as f:
     json.dump(newDict, f)
@@ -27,7 +33,7 @@ with open("DATA/wroteTable.json", "w+") as f:
 with open('DATA/wroteTable.json') as json_file: 
     song_data = json.load(json_file)    
     
-data_file = open('wroteTable.csv', 'w',newline='',encoding="utf-8") 
+data_file = open('albumsTable.csv', 'w',newline='',encoding="utf-8") 
 print (len(song_data))
 csv_writer = csv.writer(data_file) 
 count = 0
