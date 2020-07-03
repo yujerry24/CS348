@@ -23,31 +23,45 @@ const getPlaylist = (req, response) => {
 
 /*
 * POST
-* /playlist/:playlistId/:songId
+* /playlist/add/:playlistId
+* 
+* body: { list of song ids }
 */
 const addSong = (req, response) => {
-  pool
-    .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [req.params.songId, req.params.playlistId])
-    .then(results => response.status(200).json(results.rows))
-    .catch(error => {
-      console.log(error.detail);
-      response.status(400).json(error.detail)
-    })
+  if(req.body.songIds){
+    req.body.songIds.forEach(songId => {
+      pool
+        .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [songId, req.params.playlistId])
+        .then(results => response.status(200).json(results.rows))
+        .catch(error => {
+          console.log(error.detail);
+          response.status(400).json(error.detail)
+      })
+    });
+  } else {
+    response.status(400).json('No song ids were provided')
+  }
 }
 
 /*
 * DELETE
-* /playlist/:playlistId/:songId
+* /playlist/remove/:playlistId
 */
 const removeSong = (req, response) => {
-  pool
-    .query(`DELETE FROM in_playlist WHERE song_id = $1::text AND playlist_id = $2::text`, [req.params.songId, req.params.playlistId])
-    .then(results => response.status(200).json(results.rows))
-    .catch(error => {
-      console.log(error.detail);
-      response.status(400).json(error.detail)
-    })
+  if(req.body.songIds){
+    req.body.songIds.forEach(songId => {
+      pool
+        .query(`DELETE FROM in_playlist WHERE song_id = $1::text AND playlist_id = $2::text`, [songId, req.params.playlistId])
+        .then(results => response.status(200).json(results.rows))
+        .catch(error => {
+          console.log(error.detail);
+          response.status(400).json(error.detail)
+      })
+    });
+  } else {
+    response.status(400).json('No song ids were provided')
   }
+}
 
 
 /*
