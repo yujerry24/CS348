@@ -1,7 +1,7 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 
-var queries = require('../endpointImpl/playlistQueries')
+var queries = require('../endpointImpl/playlistQueries');
 
 router.get('/:playlistId', queries.getPlaylist);
 router.post('/add/:playlistId', queries.addSong);
@@ -13,4 +13,4 @@ router.get('/list/:userId', queries.listPlaylists);
 //    /playlist/:playlistId   DELETE    deletePlaylist
 //    /playlist/:playlistId   PATCH     renamePlaylist
 
-module.exports = router
+module.exports = router;

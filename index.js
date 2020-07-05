@@ -4,7 +4,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 
-const { getPlaylist1, addSongPlaylist1, removeSongPlaylist1 } = require('./dbPool');
+const {
+  getPlaylist1,
+  addSongPlaylist1,
+  removeSongPlaylist1,
+} = require('./dbPool');
 const song = require('./endpoints/song');
 const playlist = require('./endpoints/playlist');
 
@@ -16,11 +20,11 @@ app.use(
   bodyParser.urlencoded({
     extended: true,
   })
-)
+);
 
 app.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+  response.json({ info: 'Node.js, Express, and Postgres API' });
+});
 
 // end points for the sample database
 app.get('/playlist1', getPlaylist1);
@@ -34,6 +38,6 @@ app.use('/playlist', playlist);
 //    /artist/:text -- find artists by searching text (will look by artist name, song name, and album name)
 //    /album/:text -- find albums by searching text (will look by artist name, song name, and album name)
 
-app.listen(PORT, function() {
-  console.log("Server is running on Port: " + PORT);
+app.listen(PORT, function () {
+  console.log('Server is running on Port: ' + PORT);
 });
