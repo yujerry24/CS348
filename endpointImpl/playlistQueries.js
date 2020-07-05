@@ -1,4 +1,29 @@
 const { pool } = require('../dbPool');
+const uuidv4 = require('uuid').v4;
+
+/*
+ * POST
+ * /playlist
+ *
+ * body: { playlistName: string, userId: string }
+ */
+const createPlaylist = (req, response) => {
+  const playlistId = uuidv4();
+  pool
+    .query(
+      `
+      INSERT INTO playlist VALUES ($1::text, $2::text, 0, $3::text)
+      `,
+      [playlistId, req.body.playlistName, req.body.userId]
+    )
+    .then(() => {
+      response.status(200).json({ playlistId: playlistId });
+    })
+    .catch(error => {
+      console.log(error.detail);
+      response.status(400).json(error.detail);
+    });
+};
 
 /*
  * GET
@@ -22,6 +47,41 @@ const getPlaylist = (req, response) => {
     })
     .catch(error => {
       console.log(error.detail);
+      response.status(400).json(error.detail);
+    });
+};
+
+/*
+ * DELETE
+ * /playlist/:playlistId
+ */
+const deletePlaylist = (req, response) => {
+  let output = '';
+  pool
+    .query(
+      `
+        DELETE FROM in_playlist WHERE playlist_id = $1::text;
+      `,
+      [req.params.playlistId]
+    )
+    .then(() => {
+      output += 'Deleted all songs from the playlist.\n';
+    })
+    .then(() => {
+      pool
+        .query(
+          `
+          DELETE FROM playlist WHERE playlist_id = $1::text
+        `,
+          [req.params.playlistId]
+        )
+        .then(() => {
+          output += 'Deleted the playlist.\n';
+          response.status(200).send(output);
+        });
+    })
+    .catch(error => {
+      console.log(error);
       response.status(400).json(error.detail);
     });
 };
@@ -96,7 +156,9 @@ const listPlaylists = (req, response) => {
 };
 
 module.exports = {
+  createPlaylist,
   getPlaylist,
+  deletePlaylist,
   addSong,
   removeSong,
   listPlaylists,
