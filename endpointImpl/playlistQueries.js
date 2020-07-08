@@ -33,20 +33,31 @@ const getPlaylist = (req, response) => {
   pool
     .query(
       `
-        SELECT S.song_id, S.name as song_name, video_duration, A.name as artist_name
+        SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration
         FROM song S 
           INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
-          INNER JOIN wrote W ON S.song_id = W.song_id
-          INNER JOIN artist A ON W.artist_id = A.artist_id
+          INNER JOIN wrote ON S.song_id = wrote.song_id
+          INNER JOIN artist ON wrote.artist_id = artist.artist_id
+          INNER JOIN album ON album.album_id = S.album_id
         WHERE in_playlist.playlist_id = $1::text
       `,
       [req.params.playlistId]
     )
     .then(results => {
+      // const formatData = {};
+      // results.rows.forEach(row => {
+      //   formatData[row.song_id] = {};
+      //   Object.entries(row).forEach(([key, val]) => {
+      //     if (key !== 'song_id') {
+      //       formatData[row.song_id][key] = val;
+      //     }
+      //   });
+      // });
+      // response.status(200).json(formatData);
       response.status(200).json(results.rows);
     })
     .catch(error => {
-      console.log(error.detail);
+      console.log(error);
       response.status(400).json(error.detail);
     });
 };
