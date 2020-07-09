@@ -2,6 +2,16 @@ const { pool } = require('../dbPool');
 
 /*
  * /song/:text
+ *
+ * Returns: {
+ *   'song_id': {
+ *      song_name: string,
+ *      artist_name: string,
+ *      album_name: string,
+ *      video_duration: number
+ *   },
+ *   ...
+ * }
  */
 const searchText = (req, response) => {
   pool
@@ -12,15 +22,55 @@ const searchText = (req, response) => {
           INNER JOIN wrote W ON S.song_id = W.song_id
           INNER JOIN artist AR ON W.artist_id = AR.artist_id
           INNER JOIN album AL ON AL.album_id = S.album_id
-        WHERE (LOWER(S.name) LIKE LOWER($1::text)) OR (LOWER(AR.name) LIKE LOWER($1::text)) OR (LOWER(AL.name) LIKE LOWER($1::text))
+        WHERE (
+          S.song_id IN (
+            SELECT song_id 
+            FROM song
+            WHERE LOWER(song.name) LIKE LOWER($1::text)
+          )
+        ) OR (
+          S.song_id IN (
+            SELECT song_id 
+            FROM wrote INNER JOIN artist ON wrote.artist_id = artist.artist_id 
+            WHERE LOWER(artist.name) LIKE LOWER($1::text)
+          )
+        ) OR (
+          S.song_id IN (
+            SELECT song_id 
+            FROM song INNER JOIN album ON song.album_id = album.album_id 
+            WHERE LOWER(album.name) LIKE LOWER($1::text)
+          )
+        )
         LIMIT 30
       `,
       [`%${req.params.text}%`]
     )
-    .then(results => response.status(200).json(results.rows))
+    .then(results => {
+      const formatData = {};
+      results.rows.forEach(row => {
+        formatData[row.song_id] = {};
+        const currRowObj = formatData[row.song_id];
+
+        Object.entries(row)
+          .splice(1)
+          .forEach(([key, val]) => {
+            if (!currRowObj[key]) {
+              currRowObj[key] = val;
+            } else if (key === 'artist_name') {
+              // for duplicate songs (same id) but with a different artist, create a list of artists
+              if (!Array.isArray(currRowObj[key])) {
+                currRowObj[key] = [currRowObj[key], val];
+              } else {
+                currRowObj[key].push(val);
+              }
+            }
+          });
+      });
+      response.status(200).json(formatData);
+    })
     .catch(error => {
       console.log(error);
-      response.status(400).send(`An error occured during the query`);
+      response.status(400).send(`An error occurred during the query`);
     });
 };
 

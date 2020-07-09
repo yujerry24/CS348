@@ -28,6 +28,16 @@ const createPlaylist = (req, response) => {
 /*
  * GET
  * /playlist/:playlistId
+ *
+ * Returns: {
+ *   'song_id': {
+ *      song_name: string,
+ *      artist_name: string,
+ *      album_name: string,
+ *      video_duration: number
+ *   },
+ *   ...
+ * }
  */
 const getPlaylist = (req, response) => {
   pool
@@ -44,17 +54,27 @@ const getPlaylist = (req, response) => {
       [req.params.playlistId]
     )
     .then(results => {
-      // const formatData = {};
-      // results.rows.forEach(row => {
-      //   formatData[row.song_id] = {};
-      //   Object.entries(row).forEach(([key, val]) => {
-      //     if (key !== 'song_id') {
-      //       formatData[row.song_id][key] = val;
-      //     }
-      //   });
-      // });
-      // response.status(200).json(formatData);
-      response.status(200).json(results.rows);
+      const formatData = {};
+      results.rows.forEach(row => {
+        formatData[row.song_id] = {};
+        const currRowObj = formatData[row.song_id];
+
+        Object.entries(row)
+          .splice(1)
+          .forEach(([key, val]) => {
+            if (!currRowObj[key]) {
+              currRowObj[key] = val;
+            } else if (key === 'artist_name') {
+              // for duplicate songs (same id) but with a different artist, create a list of artists
+              if (!Array.isArray(currRowObj[key])) {
+                currRowObj[key] = [currRowObj[key], val];
+              } else {
+                currRowObj[key].push(val);
+              }
+            }
+          });
+      });
+      response.status(200).json(formatData);
     })
     .catch(error => {
       console.log(error);
@@ -99,26 +119,43 @@ const deletePlaylist = (req, response) => {
 
 /*
  * POST
- * /playlist/add/:playlistId
+ * /playlist/add
  *
- * body: { list of song ids }
+ * body: {
+ *   songIds: list of song ids,
+ *   playlistIds: list of song ids,
+ * }
  */
-const addSong = (req, response) => {
-  if (req.body.songIds) {
-    req.body.songIds.forEach(songId => {
-      pool
-        .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [
-          songId,
-          req.params.playlistId,
-        ])
-        .then(results => response.status(200).json(results.rows))
-        .catch(error => {
-          console.log(error.detail);
-          response.status(400).json(error.detail);
-        });
-    });
+const addSong = async (req, response) => {
+  if (req.body.playlistIds) {
+    if (req.body.songIds) {
+      await Promise.all(
+        req.body.playlistIds.reduce((arr, playlistId) => {
+          return arr.concat(
+            req.body.songIds.map(songId => {
+              return pool
+                .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [
+                  songId,
+                  playlistId,
+                ])
+                .then(() => {
+                  return `Succesfully added ${songId} into ${playlistId}`;
+                })
+                .catch(error => {
+                  console.log(error);
+                  return error.detail;
+                });
+            })
+          );
+        }, [])
+      )
+        .then(results => response.status(200).send(results))
+        .catch(err => response.status(400).json(err));
+    } else {
+      response.status(400).json('No song ids were provided');
+    }
   } else {
-    response.status(400).json('No song ids were provided');
+    response.status(400).json('No playlist ids were provided');
   }
 };
 
