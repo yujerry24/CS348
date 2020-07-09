@@ -11,14 +11,14 @@ WHERE in_playlist.playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b';
 
 -- create a playlist
 -- $1: playlist_id, $2: playlist_name, $3: user_id
--- ex. playlist_id = ?? playlist_name = 'MyFavs', user_id = '63e439ec-8625-4912-8b03-e34d5a7cfaee'
-INSERT INTO playlist VALUES ($1::text, 'MyFavs', 0, '63e439ec-8625-4912-8b03-e34d5a7cfaee')
+-- ex. playlist_id = 'fakeId' playlist_name = 'MyFavs', user_id = '63e439ec-8625-4912-8b03-e34d5a7cfaee'
+INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, '63e439ec-8625-4912-8b03-e34d5a7cfaee')
 
 -- delete a playlist
 -- $1: playlist_id
 -- ex. ???
-DELETE FROM in_playlist WHERE playlist_id = $1::text; -- first delete all songs in the playlist
-DELETE FROM playlist WHERE playlist_id = $1::text; -- delete the playlist
+DELETE FROM in_playlist WHERE playlist_id = 'fakeId'; -- first delete all songs in the playlist
+DELETE FROM playlist WHERE playlist_id = 'fakeId'; -- delete the playlist
 
 -- add a song to a playlist
 -- $1: song_id, $2: playlist_id
@@ -42,5 +42,12 @@ SELECT playlist_id, name
 -- ex. new playlist_id = 0c1966b6-4903-4caa-b997-706f6f174095,
 --     first playlist_id = 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd,
 --     second playlist_id = 8092bcc7-37ee-4114-bc5e-eac125b3bb9b
-INSERT INTO in_playlist (SELECT song_id, '0c1966b6-4903-4caa-b997-706f6f174095' AS playlist_id FROM in_playlist WHERE playlist_id = '2d7f55f0-6c7b-460c-948b-74b6e6cee6cd' UNION
-                       SELECT song_id, '0c1966b6-4903-4caa-b997-706f6f174095' AS playlist_id FROM in_playlist WHERE playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b');
+INSERT INTO in_playlist (
+  SELECT song_id, '0c1966b6-4903-4caa-b997-706f6f174095' AS playlist_id 
+  FROM in_playlist 
+  WHERE playlist_id = '2d7f55f0-6c7b-460c-948b-74b6e6cee6cd' 
+  UNION
+  SELECT song_id, '0c1966b6-4903-4caa-b997-706f6f174095' AS playlist_id 
+  FROM in_playlist 
+  WHERE playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b'
+);
