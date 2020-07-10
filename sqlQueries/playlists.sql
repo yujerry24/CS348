@@ -12,7 +12,7 @@ WHERE in_playlist.playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b';
 -- create a playlist
 -- $1: playlist_id, $2: playlist_name, $3: user_id
 -- ex. playlist_id = 'fakeId' playlist_name = 'MyFavs', user_id = '63e439ec-8625-4912-8b03-e34d5a7cfaee'
-INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, '63e439ec-8625-4912-8b03-e34d5a7cfaee')
+INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, '63e439ec-8625-4912-8b03-e34d5a7cfaee');
 
 -- delete a playlist
 -- $1: playlist_id
