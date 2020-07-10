@@ -7,7 +7,7 @@ router.post('/', queries.createPlaylist);
 router.get('/:playlistId', queries.getPlaylist);
 router.delete('/:playlistId', queries.deletePlaylist);
 router.post('/add', queries.addSong);
-router.delete('/:playlistId/:songId', queries.removeSong);
+router.delete('/remove/:playlistId', queries.removeSong);
 router.get('/list/:userId', queries.listPlaylists);
 
 // Future endpoints:

@@ -48,23 +48,25 @@ const searchText = (req, response) => {
     .then(results => {
       const formatData = {};
       results.rows.forEach(row => {
-        formatData[row.song_id] = {};
-        const currRowObj = formatData[row.song_id];
+        if (!formatData[row.song_id]) {
+          formatData[row.song_id] = {};
+          const currRowObj = formatData[row.song_id];
 
-        Object.entries(row)
-          .splice(1)
-          .forEach(([key, val]) => {
-            if (!currRowObj[key]) {
+          Object.entries(row)
+            .splice(1)
+            .forEach(([key, val]) => {
               currRowObj[key] = val;
-            } else if (key === 'artist_name') {
-              // for duplicate songs (same id) but with a different artist, create a list of artists
-              if (!Array.isArray(currRowObj[key])) {
-                currRowObj[key] = [currRowObj[key], val];
-              } else {
-                currRowObj[key].push(val);
-              }
-            }
-          });
+            });
+        } else {
+          const currRowObj = formatData[row.song_id];
+          // for duplicate songs (same id) but with a different artist, create a list of artists
+          const key = 'artist_name';
+          if (!Array.isArray(currRowObj[key])) {
+            currRowObj[key] = [currRowObj[key], row[key]];
+          } else {
+            currRowObj[key].push(val);
+          }
+        }
       });
       response.status(200).json(formatData);
     })
