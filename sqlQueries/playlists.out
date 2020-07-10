@@ -8,7 +8,8 @@
 (5 rows)
 
 INSERT 0 1
-DELETE 0
+INSERT 0 8
+DELETE 8
 DELETE 1
 INSERT 0 1
 DELETE 1
@@ -22,4 +23,3 @@ DELETE 1
  c14bde69-fe7e-41e0-98f8-4373b109561d | Playlist4
  00da60ff-2163-4b9f-953b-c966b3ef9298 | Playlist5
 (6 rows)
-
