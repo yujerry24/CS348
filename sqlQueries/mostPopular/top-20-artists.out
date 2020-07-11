@@ -1,0 +1,19 @@
+    artist_name    | in_num_of_playlists 
+-------------------+---------------------
+ DAY6              |                   8
+ BTS               |                   7
+ TWICE             |                   5
+ Girls' Generation |                   4
+ IU                |                   3
+ ANS               |                   2
+ Mamamoo           |                   2
+ MYTEEN            |                   2
+ DAY6 데이식스       |                   1
+ EXO-CBX           |                   1
+ GFRIEND           |                   1
+ Moon Byul         |                   1
+ Punch             |                   1
+ Red Velvet        |                   1
+ SUHO              |                   1
+ Youngjoo Song     |                   1
+(16 rows)
