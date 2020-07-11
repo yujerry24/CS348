@@ -1,0 +1,25 @@
+        song_id         | song_name  | artist_name |         album_name         | video_duration
+------------------------+------------+-------------+----------------------------+----------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie     | DAY6        | The Book of Us : The Demon |            213
+ 3ZWCWArPYr1v0iF763oSOz | Crossroads | GFRIEND     | 回:LABYRINTH               |            296
+ 4as4XEOR03oGm1STUKl6pa | BBIBBI     | IU          | BBIBBI                     |            209
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone       |            329
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                    |            216
+(5 rows)
+
+INSERT 0 1
+INSERT 0 8
+DELETE 8
+DELETE 1
+INSERT 0 1
+DELETE 1
+
+             playlist_id              |        name
+--------------------------------------+--------------------
+ 8092bcc7-37ee-4114-bc5e-eac125b3bb9b | Timothy's Playlist
+ 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd | Playlist1
+ 0c1966b6-4903-4caa-b997-706f6f174095 | Playlist2
+ bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist3
+ c14bde69-fe7e-41e0-98f8-4373b109561d | Playlist4
+ 00da60ff-2163-4b9f-953b-c966b3ef9298 | Playlist5
+(6 rows)

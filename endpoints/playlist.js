@@ -1,11 +1,13 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 
-var queries = require('../endpointImpl/playlistQueries')
+var queries = require('../endpointImpl/playlistQueries');
 
+router.post('/', queries.createPlaylist);
 router.get('/:playlistId', queries.getPlaylist);
-router.post('/:playlistId/:songId', queries.addSong);
-router.delete('/:playlistId/:songId', queries.removeSong);
+router.delete('/:playlistId', queries.deletePlaylist);
+router.post('/add', queries.addSong);
+router.delete('/remove/:playlistId', queries.removeSong);
 router.get('/list/:userId', queries.listPlaylists);
 
 // Future endpoints:
@@ -13,4 +15,4 @@ router.get('/list/:userId', queries.listPlaylists);
 //    /playlist/:playlistId   DELETE    deletePlaylist
 //    /playlist/:playlistId   PATCH     renamePlaylist
 
-module.exports = router
+module.exports = router;
