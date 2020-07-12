@@ -205,6 +205,39 @@ const listPlaylists = (req, response) => {
     });
 };
 
+/*
+ * POST
+ * /playlist/createFromExisting/:finalid/:id1/:id2
+ * 
+ * body: {
+ *   existingPlaylistIds: list of song ids,
+ *   newPlaylistId: list of song ids,
+ * }
+ */
+const addToPlaylistFromExisting = (req, response) => {
+  if (req.body.newPlaylistId) {
+    if (req.body.existingPlaylistIds && req.body.existingPlaylistIds.length > 0) {
+      let unionIds = req.body.existingPlaylistIds.slice(1);
+      let query = 'INSERT INTO in_playlist (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $2::text)';
+      unionIds.forEach((id, index) => { query += ` UNION (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $${index + 3}::text)` });
+      unionIds.unshift(req.body.newPlaylistId, req.body.existingPlaylistIds[0]);
+      pool
+      .query(query,
+        unionIds
+      )
+      .then(results => response.status(200).json(results.rows))
+      .catch(error => {
+        console.log(error.detail);
+        response.status(400).json(error.detail);
+      });
+    } else {
+      response.status(400).json('No existing playlist ids were provided');
+    }
+  } else {
+    response.status(400).json('No new playlist id provided');
+  }
+};
+
 module.exports = {
   createPlaylist,
   getPlaylist,
@@ -212,4 +245,5 @@ module.exports = {
   addSong,
   removeSong,
   listPlaylists,
+  addToPlaylistFromExisting,
 };
