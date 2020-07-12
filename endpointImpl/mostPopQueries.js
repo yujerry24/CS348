@@ -2,9 +2,9 @@ const { pool } = require('../dbPool')
 
 /*
     GET
-    /playlist/mostPopularSongs
+    /song/popularSongs
 */
-const getTop20Songs = (req, response) => {
+const getTop20Songs = (response) => {
     pool.query(
         `
             SELECT S.song_id, S.name as song_name, video_duration, Al.name as album_name, A.name as artist_name 
@@ -23,7 +23,31 @@ const getTop20Songs = (req, response) => {
             );
         `
     )
-    .then(results => { response.status(200).json(results.rows) })
+    .then(results => {
+        const formatData = {};
+        results.rows.forEach(row => {
+          if (!formatData[row.song_id]) {
+            formatData[row.song_id] = {};
+            const currRowObj = formatData[row.song_id];
+  
+            Object.entries(row)
+              .splice(1)
+              .forEach(([key, val]) => {
+                currRowObj[key] = val;
+              });
+          } else {
+            const currRowObj = formatData[row.song_id];
+            // for duplicate songs (same id) but with a different artist, create a list of artists
+            const key = 'artist_name';
+            if (!Array.isArray(currRowObj[key])) {
+              currRowObj[key] = [currRowObj[key], row[key]];
+            } else {
+              currRowObj[key].push(val);
+            }
+          }
+        });
+        response.status(200).json(formatData);
+      })
     .catch(error => {
         console.log(error.detail);
         response.status(400).json(error.detail);
@@ -32,7 +56,7 @@ const getTop20Songs = (req, response) => {
 
 /*
     GET
-    /playlist/mostPopularArtists
+    /song/popularArtists
 */
 const getTop20Artists = (req, response) => {
     pool.query(

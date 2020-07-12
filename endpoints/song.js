@@ -7,9 +7,9 @@ var popQueries = require('../endpointImpl/mostPopQueries')
 router.get('/:text', queries.searchText);
 
 // Future endpoints:
-//    /popularity             GET      getPopular
+//    /popularity             GET       getPopular
 //    /mostPlaylist ????      GET       inMostPlaylists
-router.get('/:');
-router.get('/:');
+router.get('/popularSongs', popQueries.getTop20Songs);
+router.get('/popularArtists', popQueries.getTop20Artists);
 
 module.exports = router;
