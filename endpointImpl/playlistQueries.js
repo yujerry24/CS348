@@ -207,7 +207,7 @@ const listPlaylists = (req, response) => {
 
 /*
  * POST
- * /playlist/createFromExisting/:finalid/:id1/:id2
+ * /playlist/createFromExisting
  * 
  * body: {
  *   existingPlaylistIds: list of song ids,
