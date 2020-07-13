@@ -1,0 +1,14 @@
+    artist_name    | in_num_of_playlists 
+-------------------+---------------------
+ BTS               |                   5
+ DAY6              |                   4
+ Girls' Generation |                   3
+ HyunA             |                   2
+ IU                |                   2
+ IZ*ONE            |                   2
+ MYTEEN            |                   2
+ ONEUS             |                   2
+ GFRIEND           |                   1
+ Mamamoo           |                   1
+ TWICE             |                   1
+(11 rows)
