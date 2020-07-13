@@ -1,0 +1,81 @@
+        song_id         | song_name  | artist_name |          album_name           | video_duration | isfavourite
+------------------------+------------+-------------+-------------------------------+----------------+-------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie     | DAY6        | The Book of Us : The Demon    |            213 | t
+ 53LEFZFqPLoN0tWwaTk17C | The One    | EXO-CBX     | Hey Mama!– The 1st Mini Album |            161 | f
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone          |            329 | f
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                       |            216 | f
+(4 rows)
+
+INSERT 0 1
+INSERT 0 8
+DELETE 8
+DELETE 1
+INSERT 0 1
+DELETE 1
+
+             playlist_id              |        name
+--------------------------------------+--------------------
+ Timothy-liked-songs                  | likedPlaylist
+ 8092bcc7-37ee-4114-bc5e-eac125b3bb9b | Timothy's Playlist
+ 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd | Playlist1
+ 0c1966b6-4903-4caa-b997-706f6f174095 | Playlist2
+ bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist3
+(5 rows)
+
+        song_id         |      song_name      | artist_name |           album_name           | video_duration
+------------------------+---------------------+-------------+--------------------------------+----------------
+ 20bWnhRylVPnTpfsuIzorG | Hey Mama!           | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            205
+ 53LEFZFqPLoN0tWwaTk17C | The One             | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            161
+ 4oshAVovZxjAWT8TRhRdNC | Rhythm After Summer | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            208
+ 7JHiyIBneG5971rM9QFoOD | Hey Mama!           | EXO-CBX     | Hey Mama! – The 1st Mini Album |            205
+(4 rows)
+
+    artist_name    | in_num_of_playlists 
+-------------------+---------------------
+ BTS               |                   5
+ DAY6              |                   4
+ Girls' Generation |                   3
+ HyunA             |                   2
+ IU                |                   2
+ IZ*ONE            |                   2
+ MYTEEN            |                   2
+ ONEUS             |                   2
+ GFRIEND           |                   1
+ Mamamoo           |                   1
+ TWICE             |                   1
+(11 rows)
+
+        song_id         |               song_name                | video_duration |                    album_name                    |    artist_name    
+------------------------+----------------------------------------+----------------+--------------------------------------------------+-------------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie                                 |            213 | The Book of Us : The Demon                       | DAY6
+ 71vPAjlG1x606483GTJNhY | FIESTA                                 |            218 | BLOOM*IZ                                         | IZ*ONE
+ 5KqOPtE8nhYtgcXzrIt6N0 | A Song Written Easily                  |            273 | IN ITS TIME                                      | ONEUS
+ 3ZWCWArPYr1v0iF763oSOz | Crossroads                             |            296 | 回:LABYRINTH                                     | GFRIEND
+ 4as4XEOR03oGm1STUKl6pa | BBIBBI                                 |            209 | BBIBBI                                           | IU
+ 3y7ByLZ05tluscOTRgEJ9Y | Palette (Feat. G-DRAGON)               |            219 | Palette                                          | IU
+ 5kFakScPV7ZWXStUSvQmxA | BABE                                   |            204 | Following                                        | HyunA
+ 1uszVo0bVPALn32ix2kJ9e | Shoot Me                               |            180 | Shoot Me : Youth Part 1                          | DAY6
+ 24nK8tW7Pt3Inh2utttuoG | HIP                                    |            211 | reality in BLACK                                 | Mamamoo
+ 0u7aRGM7YmvtsmG5NSrNsO | Feel Special                           |            221 | Feel Special                                     | TWICE
+ 60zxdAqWtdDu0vYsbXViA7 | FANCY                                  |            219 | FANCY YOU                                        | TWICE
+ 4dOrfL6qgxnjCMSmkekFhB | Gleam                                  |            189 | Gleam                                            | Mamamoo
+ 3LvD7wWPrcp8jqPSmaaVAc | The Boys                               |            320 | The Boys                                         | Girls' Generation
+ 5SE57ljOIUJ1ybL9U6CuBH | DNA                                    |            256 | Love Yourself 承 'Her'                           | BTS
+ 6JdS5rJvJaRA7B1tcm7kxZ | Dionysus                               |            298 | MAP OF THE SOUL : PERSONA                        | BTS
+ 5RGf8qn1TBWVplLyyKUsuV | Blood Sweat & Tears                    |            364 | Wings                                            | BTS
+ 3p5PbT7QMSQpTG5X1qUqk1 | Love Is Not Over (Full Length Edition) |            224 | The Most Beautiful Moment in Life: Young Forever | BTS
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day                             |            329 | You Never Walk Alone                             | BTS
+ 5mejZAeca4Ry7Sptw7LnvS | Catch Me If You Can - Korean Version   |            263 | Catch Me If You Can                              | Girls' Generation
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD                                |            216 | F;UZZLE                                          | MYTEEN
+(20 rows)
+
+INSERT 0 1
+
+Query returned successfully in 118 msec.
+
+ user_id
+---------
+ Timothy
+(1 row)
+
+INSERT 0 1
