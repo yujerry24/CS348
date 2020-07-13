@@ -1,12 +1,13 @@
-const { pool } = require('../dbPool')
+const { pool } = require('../dbPool');
 
 /*
-    GET
-    /song/popularSongs
-*/
-const getTop20Songs = (response) => {
-    pool.query(
-        `
+ * GET
+ * /song/popularSongs
+ */
+const getTop20Songs = (_, response) => {
+  pool
+    .query(
+      `
             SELECT S.song_id, S.name as song_name, video_duration, Al.name as album_name, A.name as artist_name 
             FROM song S 
                 INNER JOIN wrote W on S.song_id = W.song_id
@@ -20,47 +21,48 @@ const getTop20Songs = (response) => {
                         ORDER BY count(P.song_id) DESC
                     ) AS in_play LIMIT 20
                 )
-            );
+            )
         `
     )
     .then(results => {
-        const formatData = {};
-        results.rows.forEach(row => {
-          if (!formatData[row.song_id]) {
-            formatData[row.song_id] = {};
-            const currRowObj = formatData[row.song_id];
-  
-            Object.entries(row)
-              .splice(1)
-              .forEach(([key, val]) => {
-                currRowObj[key] = val;
-              });
+      const formatData = {};
+      results.rows.forEach(row => {
+        if (!formatData[row.song_id]) {
+          formatData[row.song_id] = {};
+          const currRowObj = formatData[row.song_id];
+
+          Object.entries(row)
+            .splice(1)
+            .forEach(([key, val]) => {
+              currRowObj[key] = val;
+            });
+        } else {
+          const currRowObj = formatData[row.song_id];
+          // for duplicate songs (same id) but with a different artist, create a list of artists
+          const key = 'artist_name';
+          if (!Array.isArray(currRowObj[key])) {
+            currRowObj[key] = [currRowObj[key], row[key]];
           } else {
-            const currRowObj = formatData[row.song_id];
-            // for duplicate songs (same id) but with a different artist, create a list of artists
-            const key = 'artist_name';
-            if (!Array.isArray(currRowObj[key])) {
-              currRowObj[key] = [currRowObj[key], row[key]];
-            } else {
-              currRowObj[key].push(val);
-            }
+            currRowObj[key].push(val);
           }
-        });
-        response.status(200).json(formatData);
-      })
-    .catch(error => {
-        console.log(error.detail);
-        response.status(400).json(error.detail);
+        }
+      });
+      response.status(200).json(formatData);
     })
-}
+    .catch(error => {
+      console.log(error.detail);
+      response.status(400).json(error.detail);
+    });
+};
 
 /*
     GET
     /song/popularArtists
 */
-const getTop20Artists = (req, response) => {
-    pool.query(
-        `
+const getTop20Artists = (_, response) => {
+  pool
+    .query(
+      `
             SELECT DISTINCT * FROM (
                 SELECT A.name AS artist_name, inPlay.in_num_of_playlists
                 FROM artist A
@@ -83,14 +85,16 @@ const getTop20Artists = (req, response) => {
             ORDER BY in_num_of_playlists DESC;
         `
     )
-    .then(results => { response.status(200).json(results.rows) })
-    .catch(error => {
-        console.log(error.detail);
-        response.status(400).json(error.detail);
+    .then(results => {
+      response.status(200).json(results.rows);
     })
-}
+    .catch(error => {
+      console.log(error.detail);
+      response.status(400).json(error.detail);
+    });
+};
 
 module.exports = {
-    getTop20Songs,
-    getTop20Artists
-}
+  getTop20Songs,
+  getTop20Artists,
+};

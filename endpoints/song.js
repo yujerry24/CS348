@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var queries = require('../endpointImpl/songQueries')
-var popQueries = require('../endpointImpl/mostPopQueries')
+var queries = require('../endpointImpl/songQueries');
+var popQueries = require('../endpointImpl/mostPopQueries');
 
-router.get('/:text', queries.searchText);
+router.get('/search/:text', queries.searchText);
 
 // Future endpoints:
 //    /popularity             GET       getPopular
