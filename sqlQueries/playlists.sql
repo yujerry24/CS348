@@ -1,7 +1,12 @@
 -- list the songs that are in a playlist
 -- $1: playlist id 
 -- ex.8092bcc7-37ee-4114-bc5e-eac125b3bb9b
-SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration
+SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration,
+ ( S.song_id IN (
+   SELECT song_id 
+   FROM playlist INNER JOIN in_playlist ON playlist.playlist_id = in_playlist.playlist_id 
+   WHERE playlist.playlist_id='Timothy-liked-song')
+   ) as isFavourite
 FROM song S 
   INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
   INNER JOIN wrote ON S.song_id = wrote.song_id
@@ -11,8 +16,8 @@ WHERE in_playlist.playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b';
 
 -- create a playlist
 -- $1: playlist_id, $2: playlist_name, $3: user_id
--- ex. playlist_id = 'fakeId' playlist_name = 'MyFavs', user_id = '63e439ec-8625-4912-8b03-e34d5a7cfaee'
-INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, '63e439ec-8625-4912-8b03-e34d5a7cfaee');
+-- ex. playlist_id = 'fakeId' playlist_name = 'MyFavs', user_id = 'Timothy'
+INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, 'Timothy');
 
 ---Create a new playlist containing all the songs from 2 existing playlists created by a certain user
 -- $1: new playlist_id $2: first playlist_id $3: second playlist_id
@@ -47,7 +52,7 @@ DELETE FROM in_playlist WHERE song_id = '0SdMLlsw5FOEbHJmJs8aUA' AND playlist_id
 
 -- get all the playlists created by a certain user
 -- $1: user_id
--- ex. $1 = '63e439ec-8625-4912-8b03-e34d5a7cfaee'
+-- ex. $1 = 'Timothy'
 SELECT playlist_id, name 
   FROM playlist
-  WHERE user_id = '63e439ec-8625-4912-8b03-e34d5a7cfaee';
+  WHERE user_id = 'Timothy';
