@@ -5,6 +5,9 @@ Jackie Chen:
 - Worked on drawing the E/R diagram
 - Translated the E/R diagram into a database schema
 - Wrote the sql commands to create the database
+- Created login screen with user validation
+- Added queries to create users and to find specific users
+- Set up backend endpoints for various user actions
 
 Thomas Cheng:
 - Found the dataset
@@ -13,6 +16,8 @@ Thomas Cheng:
 - Worked on drawing the E/R diagram
 - Added appropriate api calls to the front-end
 - Created navigation between searching for songs vs viewing a playlist
+- Wrote SQL queries that return the 20 most popular songs and artists across all playlists
+- Implemented api endpoint and frontend features to support new popularity query
 
 Hannah Li:
 - Proposed idea
@@ -21,7 +26,10 @@ Hannah Li:
 - Worked on drawing the E/R diagram
 - Deployed backend to google cloud app engine and linked with database
 - Wrote sql queries that are necessary for the basic features of the application
-- Implemented the queries in api endpoints
+- Implemented the initial queries in api endpoints
+- Wrote the queries for searching, creating playlists, deleting playlists, adding and removing songs from playlists, and fetching playlists
+- Implemented the above queries/actions into the front-end applications
+- Added Redux to the application to improve management of data on the front-end
 
 Frank Wu:
 - Wrote parts of the report
@@ -30,6 +38,11 @@ Frank Wu:
 - Worked on drawing the E/R diagram
 - Wrote scripts to gather the dataset from various sources
 - Merged the data and stored it in a format similar to the database schema
+- Refactor front end code to decouple API calling functions and improve variable naming
+- Wrote SQL Query for creating playlists based with other existing playlists
+- Set up backend endpoint for creating playlists with other existing playlists
+- Created front-end create playlist page 
+
 
 Jerry Yu:
 - Wrote parts of the report
@@ -39,3 +52,5 @@ Jerry Yu:
 - Worked on drawing the E/R diagram
 - Ran the sql commands to create the database
 - Dumped the data into the database
+- Wrote queries to create and update a liked songs playlist
+- Added btree indices to optimize search
