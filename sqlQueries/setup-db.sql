@@ -32,8 +32,7 @@ CREATE TABLE playlist (
 );
 
 CREATE TABLE "user" (
-    user_id VARCHAR(50) NOT NULL PRIMARY KEY,
-    name VARCHAR(100)
+    user_id VARCHAR(50) NOT NULL PRIMARY KEY
 );
 
 -- relationship sets
