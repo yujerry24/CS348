@@ -1,7 +1,7 @@
 const { pool } = require('../dbPool');
 
 /*
- * /song/:text
+ * /song/search/:text
  *
  * Returns: {
  *   'song_id': {
