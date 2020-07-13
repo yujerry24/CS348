@@ -19,7 +19,7 @@ WHERE in_playlist.playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b';
 -- ex. playlist_id = 'fakeId' playlist_name = 'MyFavs', user_id = 'Timothy'
 INSERT INTO playlist VALUES ('fakeId', 'MyFavs', 0, 'Timothy');
 
----Create a new playlist containing all the songs from 2 existing playlists created by a certain user
+---Create a new playlist containing all the songs from multiple existing playlists created by a certain user
 -- $1: new playlist_id $2: first playlist_id $3: second playlist_id
 -- ex. new playlist_id = 0c1966b6-4903-4caa-b997-706f6f174095,
 --     first playlist_id = 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd,
@@ -32,6 +32,8 @@ INSERT INTO in_playlist (
   SELECT song_id, 'fakeId' AS playlist_id 
   FROM in_playlist 
   WHERE playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b'
+  UNION
+  ...
 );
 
 -- delete a playlist
