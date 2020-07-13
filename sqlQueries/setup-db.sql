@@ -61,3 +61,9 @@ CREATE TABLE in_playlist (
     FOREIGN KEY(song_id) REFERENCES song,
     FOREIGN KEY(playlist_id) REFERENCES playlist
 );
+
+CREATE INDEX btree_on_album_name ON public.album USING btree (name);
+
+CREATE INDEX btree_on_artist_name ON public.artist USING btree (name);
+
+CREATE INDEX btree_on_song_name ON public.song USING btree (name);
