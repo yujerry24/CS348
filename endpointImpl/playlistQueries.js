@@ -1,4 +1,5 @@
 const { pool } = require('../dbPool');
+const { formatSongs } = require('./utils');
 const uuidv4 = require('uuid').v4;
 
 /*
@@ -54,29 +55,7 @@ const getPlaylist = (req, response) => {
       [req.params.playlistId]
     )
     .then(results => {
-      const formatData = {};
-      results.rows.forEach(row => {
-        if (!formatData[row.song_id]) {
-          formatData[row.song_id] = {};
-          const currRowObj = formatData[row.song_id];
-
-          Object.entries(row)
-            .splice(1)
-            .forEach(([key, val]) => {
-              currRowObj[key] = val;
-            });
-        } else {
-          const currRowObj = formatData[row.song_id];
-          // for duplicate songs (same id) but with a different artist, create a list of artists
-          const key = 'artist_name';
-          const val = row[key];
-          if (!Array.isArray(currRowObj[key])) {
-            currRowObj[key] = [currRowObj[key], val];
-          } else {
-            currRowObj[key].push(val);
-          }
-        }
-      });
+      const formatData = formatSongs(results);
       response.status(200).json(formatData);
     })
     .catch(error => {

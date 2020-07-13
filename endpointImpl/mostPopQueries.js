@@ -1,4 +1,5 @@
 const { pool } = require('../dbPool');
+const { formatSongs } = require('./utils');
 
 /*
  * GET
@@ -8,7 +9,7 @@ const getTop20Songs = (_, response) => {
   pool
     .query(
       `
-            SELECT S.song_id, S.name as song_name, video_duration, Al.name as album_name, A.name as artist_name 
+            SELECT S.song_id, S.name as song_name, A.name as artist_name, Al.name as album_name, video_duration
             FROM song S 
                 INNER JOIN wrote W on S.song_id = W.song_id
                 INNER JOIN artist A on W.artist_id = A.artist_id
@@ -25,28 +26,7 @@ const getTop20Songs = (_, response) => {
         `
     )
     .then(results => {
-      const formatData = {};
-      results.rows.forEach(row => {
-        if (!formatData[row.song_id]) {
-          formatData[row.song_id] = {};
-          const currRowObj = formatData[row.song_id];
-
-          Object.entries(row)
-            .splice(1)
-            .forEach(([key, val]) => {
-              currRowObj[key] = val;
-            });
-        } else {
-          const currRowObj = formatData[row.song_id];
-          // for duplicate songs (same id) but with a different artist, create a list of artists
-          const key = 'artist_name';
-          if (!Array.isArray(currRowObj[key])) {
-            currRowObj[key] = [currRowObj[key], row[key]];
-          } else {
-            currRowObj[key].push(val);
-          }
-        }
-      });
+      const formatData = formatSongs(results);
       response.status(200).json(formatData);
     })
     .catch(error => {
