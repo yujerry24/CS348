@@ -69,8 +69,9 @@ const getPlaylist = (req, response) => {
           const currRowObj = formatData[row.song_id];
           // for duplicate songs (same id) but with a different artist, create a list of artists
           const key = 'artist_name';
+          const val = row[key];
           if (!Array.isArray(currRowObj[key])) {
-            currRowObj[key] = [currRowObj[key], row[key]];
+            currRowObj[key] = [currRowObj[key], val];
           } else {
             currRowObj[key].push(val);
           }
@@ -211,28 +212,34 @@ const listPlaylists = (req, response) => {
 /*
  * POST
  * /playlist/createFromExisting
- * 
+ *
  * body: {
- *   existingPlaylistIds: list of song ids,
- *   newPlaylistId: list of song ids,
+ *   existingPlaylistIds: [string], // playlists of songs to include
+ *   newPlaylistId: string, // new playlists that is being filled
  * }
  */
 const addToPlaylistFromExisting = (req, response) => {
   if (req.body.newPlaylistId) {
-    if (req.body.existingPlaylistIds && req.body.existingPlaylistIds.length > 0) {
+    if (
+      req.body.existingPlaylistIds &&
+      req.body.existingPlaylistIds.length > 0
+    ) {
       let unionIds = req.body.existingPlaylistIds.slice(1);
-      let query = 'INSERT INTO in_playlist (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $2::text)';
-      unionIds.forEach((id, index) => { query += ` UNION (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $${index + 3}::text)` });
+      let query =
+        'INSERT INTO in_playlist (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $2::text)';
+      unionIds.forEach((id, index) => {
+        query += ` UNION (SELECT song_id, $1::text AS playlist_id FROM in_playlist WHERE playlist_id = $${
+          index + 3
+        }::text)`;
+      });
       unionIds.unshift(req.body.newPlaylistId, req.body.existingPlaylistIds[0]);
       pool
-      .query(query,
-        unionIds
-      )
-      .then(results => response.status(200).json(results.rows))
-      .catch(error => {
-        console.log(error.detail);
-        response.status(400).json(error.detail);
-      });
+        .query(query, unionIds)
+        .then(results => response.status(200).json(results.rows))
+        .catch(error => {
+          console.log(error.detail);
+          response.status(400).json(error.detail);
+        });
     } else {
       response.status(400).json('No existing playlist ids were provided');
     }
