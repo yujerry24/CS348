@@ -124,8 +124,8 @@ const deletePlaylist = (req, response) => {
  * /playlist/add
  *
  * body: {
- *   songIds: list of song ids,
- *   playlistIds: list of song ids,
+ *   songIds: [string],
+ *   playlistIds: [string],
  * }
  */
 const addSong = async (req, response) => {
@@ -164,6 +164,9 @@ const addSong = async (req, response) => {
 /*
  * DELETE
  * /playlist/remove/:playlistId
+ * body: {
+ *    songIds: [string]
+ * }
  */
 const removeSong = (req, response) => {
   if (req.body.songIds) {
