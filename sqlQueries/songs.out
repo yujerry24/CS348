@@ -1,7 +1,6 @@
-        song_id         |      song_name      | artist_name |           album_name           | video_duration
-------------------------+---------------------+-------------+--------------------------------+----------------
- 20bWnhRylVPnTpfsuIzorG | Hey Mama!           | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            205
- 53LEFZFqPLoN0tWwaTk17C | The One             | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            161
- 4oshAVovZxjAWT8TRhRdNC | Rhythm After Summer | EXO-CBX     | Hey Mama!– The 1st Mini Album  |            208
- 7JHiyIBneG5971rM9QFoOD | Hey Mama!           | EXO-CBX     | Hey Mama! – The 1st Mini Album |            205
-(4 rows)
+        song_id         |      song_name       | artist_name |         album_name         | video_duration | isfavourite
+------------------------+----------------------+-------------+----------------------------+----------------+-------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie               | DAY6        | The Book of Us : The Demon |            213 | t
+ 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | BAEKHYUN    | Puberty BookⅡ Pum          |            203 | f
+ 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | Bolbbalgan4 | Puberty BookⅡ Pum          |            203 | f
+(3 rows)

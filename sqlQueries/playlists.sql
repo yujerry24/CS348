@@ -4,8 +4,8 @@
 SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration,
  ( S.song_id IN (
    SELECT song_id 
-   FROM playlist INNER JOIN in_playlist ON playlist.playlist_id = in_playlist.playlist_id 
-   WHERE playlist.playlist_id='Timothy-liked-song')
+   FROM in_playlist
+   WHERE playlist_id='Timothy-liked-songs')
    ) as isFavourite
 FROM song S 
   INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
