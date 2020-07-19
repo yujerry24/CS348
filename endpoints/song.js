@@ -4,7 +4,7 @@ var router = express.Router();
 var queries = require('../endpointImpl/songQueries');
 var popQueries = require('../endpointImpl/mostPopQueries');
 
-router.get('/search/:text', queries.searchText);
+router.get('/search/:userId/:text', queries.searchText);
 
 // Future endpoints:
 //    /popularity             GET       getPopular
