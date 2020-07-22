@@ -4,7 +4,7 @@ var router = express.Router();
 var queries = require('../endpointImpl/playlistQueries');
 
 router.post('/', queries.createPlaylist);
-router.get('/:playlistId', queries.getPlaylist);
+router.get('/getUserPlaylists/:playlistId/:userId', queries.getPlaylist);
 router.delete('/:playlistId', queries.deletePlaylist);
 router.post('/add', queries.addSong);
 router.delete('/remove/:playlistId', queries.removeSong);

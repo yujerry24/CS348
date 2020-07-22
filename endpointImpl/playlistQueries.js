@@ -28,7 +28,7 @@ const createPlaylist = (req, response) => {
 
 /*
  * GET
- * /playlist/:playlistId
+ * /playlist/:playlistId/:userId
  *
  * Returns: {
  *   'song_id': {
@@ -44,15 +44,20 @@ const getPlaylist = (req, response) => {
   pool
     .query(
       `
-        SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration
+        SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration, video_id,
+          ( S.song_id IN (
+            SELECT song_id 
+            FROM in_playlist
+            WHERE playlist_id=$1::text)
+          ) as isFavourite
         FROM song S 
           INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
           INNER JOIN wrote ON S.song_id = wrote.song_id
           INNER JOIN artist ON wrote.artist_id = artist.artist_id
           INNER JOIN album ON album.album_id = S.album_id
-        WHERE in_playlist.playlist_id = $1::text
+        WHERE in_playlist.playlist_id = $2::text
       `,
-      [req.params.playlistId]
+      [`${req.params.userId}-liked-songs`, req.params.playlistId]
     )
     .then(results => {
       const formatData = formatSongs(results);

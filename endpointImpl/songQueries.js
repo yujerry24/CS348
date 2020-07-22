@@ -2,7 +2,7 @@ const { pool } = require('../dbPool');
 const { formatSongs } = require('./utils');
 
 /*
- * /song/search/:text
+ * /song/search/:userId/:text
  *
  * Returns: {
  *   'song_id': {
@@ -18,7 +18,12 @@ const searchText = (req, response) => {
   pool
     .query(
       `
-        SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, S.video_duration
+        SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, video_duration,
+        ( S.song_id IN (
+          SELECT song_id 
+          FROM in_playlist
+          WHERE playlist_id=$2::text)
+          ) as isFavourite
         FROM song S
           INNER JOIN wrote W ON S.song_id = W.song_id
           INNER JOIN artist AR ON W.artist_id = AR.artist_id
@@ -44,7 +49,7 @@ const searchText = (req, response) => {
         )
         LIMIT 30
       `,
-      [`%${req.params.text}%`]
+      [`%${req.params.text}%`, `${req.params.userId}-liked-songs`]
     )
     .then(results => {
       const formatData = formatSongs(results);
