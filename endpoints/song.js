@@ -14,4 +14,4 @@ router.get('/minisearch/:text', queries.miniSearchSong);
 router.get('/popularSongs', popQueries.getTop20Songs);
 router.get('/popularArtists', popQueries.getTop20Artists);
 
-module.exports = route
+module.exports = router;
