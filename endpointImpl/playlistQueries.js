@@ -1,5 +1,5 @@
 const { pool } = require('../dbPool');
-const { formatSongs } = require('./utils');
+const { formatSongs, formatPlaylists } = require('./utils');
 const uuidv4 = require('uuid').v4;
 
 /*
@@ -232,6 +232,38 @@ const addToPlaylistFromExisting = (req, response) => {
   }
 };
 
+/*
+ * GET
+ * /playlist/minisearch/:text
+ *
+ * Returns: {
+ *   'playlist_id': {
+ *      name: string,
+ *      user_id: string
+ *   },
+ *   ...
+ * }
+ */
+const miniPlaylistSearch = (req, response) => {
+  pool
+    .query(
+      `
+          SELECT playlist_id, name, user_id FROM playlist
+          WHERE LOWER(name) LIKE LOWER($1::text)
+          LIMIT 5
+        `,
+      [`%${req.params.text}%`]
+    )
+    .then(results => {
+      const formatData = formatPlaylists(results);
+      response.status(200).json(formatData);
+    })
+    .catch(error => {
+      console.log(error);
+      response.status(400).send(`An error occurred during the query`);
+    });
+};
+
 module.exports = {
   createPlaylist,
   getPlaylist,
@@ -240,4 +272,5 @@ module.exports = {
   removeSong,
   listPlaylists,
   addToPlaylistFromExisting,
+  miniPlaylistSearch,
 };

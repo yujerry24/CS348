@@ -25,6 +25,57 @@ const formatSongs = results => {
   return formatData;
 };
 
+const formatAlbums = results => {
+  const formatData = {};
+  results.rows.forEach(row => {
+    formatData[row.album_id] = {};
+    const currRowObj = formatData[row.album_id];
+
+    Object.entries(row)
+      .splice(1)
+      .forEach(([key, val]) => {
+        currRowObj[key] = val;
+      });
+    // There should only be one entry per album
+  });
+  return formatData;
+};
+
+const formatArtists = results => {
+  const formatData = {};
+  results.rows.forEach(row => {
+    formatData[row.artist_id] = {};
+    const currRowObj = formatData[row.artist_id];
+
+    Object.entries(row)
+      .splice(1)
+      .forEach(([key, val]) => {
+        currRowObj[key] = val;
+      });
+    // There should only be one entry per artist
+  });
+  return formatData;
+};
+
+const formatPlaylists = results => {
+  const formatData = {};
+  results.rows.forEach(row => {
+    formatData[row.playlist_id] = {};
+    const currRowObj = formatData[row.playlist_id];
+
+    Object.entries(row)
+      .splice(1)
+      .forEach(([key, val]) => {
+        currRowObj[key] = val;
+      });
+    // There should only be one entry per artist
+  });
+  return formatData;
+};
+
 module.exports = {
   formatSongs,
+  formatAlbums,
+  formatArtists,
+  formatPlaylists,
 };
