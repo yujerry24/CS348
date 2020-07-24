@@ -5,6 +5,9 @@ const { formatArtists } = require('./utils');
  * GET
  * /artist/minisearch/:text
  *
+ * body: {
+ *   limit: [int], // optional maximum number of results to return
+ * }
  * Returns: {
  *   'artist_id': {
  *      artist_name: string
@@ -12,14 +15,15 @@ const { formatArtists } = require('./utils');
  *   ...
  * }
  */
-const miniArtistSearcb = (req, response) => {
+const artistSearch = (req, response) => {
+  let query = `SELECT artist_id, name FROM artist 
+            WHERE LOWER(name) LIKE LOWER($1::text)`
+  if (req.body.limit && req.body.limit > 0) {
+    query += ` LIMIT ${req.body.limit}`
+  }
   pool
     .query(
-      `
-          SELECT artist_id, name FROM artist 
-          WHERE LOWER(name) LIKE LOWER($1::text)
-          LIMIT 5
-        `,
+      query,
       [`%${req.params.text}%`]
     )
     .then(results => {
@@ -33,5 +37,5 @@ const miniArtistSearcb = (req, response) => {
 };
 
 module.exports = {
-  miniArtistSearcb,
+  artistSearch,
 };

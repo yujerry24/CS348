@@ -11,7 +11,7 @@ router.delete('/remove/:playlistId', queries.removeSong);
 router.get('/list/:userId', queries.listPlaylists);
 router.post('/createFromExisting', queries.addToPlaylistFromExisting);
 
-router.get('/minisearch/:text', queries.miniPlaylistSearch);
+router.post('/search/:text', queries.playlistSearch);
 // Future endpoints:
 //    /playlist               POST      createPlaylist
 //    /playlist/:playlistId   DELETE    deletePlaylist

@@ -66,6 +66,9 @@ const searchText = (req, response) => {
  * GET
  * /song/minisearch/:text
  *
+ * body: {
+ *   limit: [int], // optional maximum number of results to return
+ * }
  * Returns: {
  *   'song_id': {
  *      song_name: string
@@ -75,24 +78,28 @@ const searchText = (req, response) => {
  *   ...
  * }
  */
-const miniSearchSong = (req, response) => {
+const searchSong = (req, response) => {
+  let query =       
+  `
+  SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name
+  FROM song S
+    INNER JOIN wrote W ON S.song_id = W.song_id
+    INNER JOIN artist AR ON W.artist_id = AR.artist_id
+    INNER JOIN album AL ON AL.album_id = S.album_id
+  WHERE (
+    S.song_id IN (
+      SELECT song_id 
+      FROM song
+      WHERE LOWER(song.name) LIKE LOWER($1::text)
+    )
+  ) 
+  `;
+  if (req.body.limit && req.body.limit > 0) {
+    query += ` LIMIT ${req.body.limit}`
+  }
   pool
     .query(
-      `
-        SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name
-        FROM song S
-          INNER JOIN wrote W ON S.song_id = W.song_id
-          INNER JOIN artist AR ON W.artist_id = AR.artist_id
-          INNER JOIN album AL ON AL.album_id = S.album_id
-        WHERE (
-          S.song_id IN (
-            SELECT song_id 
-            FROM song
-            WHERE LOWER(song.name) LIKE LOWER($1::text)
-          )
-        ) 
-        LIMIT 5
-      `,
+      query,
       [`%${req.params.text}%`]
     )
     .then(results => {
@@ -107,5 +114,5 @@ const miniSearchSong = (req, response) => {
 
 module.exports = {
   searchText,
-  miniSearchSong
+  searchSong
 };

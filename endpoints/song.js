@@ -5,8 +5,8 @@ var queries = require('../endpointImpl/songQueries');
 var popQueries = require('../endpointImpl/mostPopQueries');
 
 router.get('/search/:userId/:text', queries.searchText);
-router.get('/search/:text', queries.searchText);
-router.get('/minisearch/:text', queries.miniSearchSong);
+router.get('/searchMore/:text', queries.searchText);
+router.post('/search/:text', queries.searchSong);
 
 // Future endpoints:
 //    /popularity             GET       getPopular

@@ -5,6 +5,9 @@ const { formatAlbums } = require('./utils');
  * GET
  * /album/minisearch/:text
  *
+ * body: {
+ *   limit: [int], // optional maximum number of results to return
+ * }
  * Returns: {
  *   'album_id': {
  *      album_name: string
@@ -12,14 +15,15 @@ const { formatAlbums } = require('./utils');
  *   ...
  * }
  */
-const miniAlbumSearcb = (req, response) => {
+const albumSearcb = (req, response) => {
+  let query = `SELECT album_id, name FROM album
+            WHERE LOWER(name) LIKE LOWER($1::text)`;
+  if (req.body.limit && req.body.limit > 0) {
+    query += ` LIMIT ${req.body.limit}`
+  }
   pool
     .query(
-      `
-          SELECT album_id, name FROM album
-          WHERE LOWER(name) LIKE LOWER($1::text)
-          LIMIT 5
-        `,
+      query,
       [`%${req.params.text}%`]
     )
     .then(results => {
@@ -33,5 +37,5 @@ const miniAlbumSearcb = (req, response) => {
 };
 
 module.exports = {
-  miniAlbumSearcb,
+  albumSearcb,
 };

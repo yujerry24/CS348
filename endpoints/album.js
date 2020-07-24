@@ -3,6 +3,6 @@ var router = express.Router();
 
 var queries = require('../endpointImpl/albumQueries');
 
-router.get('/minisearch/:text', queries.miniAlbumSearcb);
+router.post('/search/:text', queries.albumSearcb);
 
 module.exports = router;

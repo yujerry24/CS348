@@ -235,7 +235,10 @@ const addToPlaylistFromExisting = (req, response) => {
 /*
  * GET
  * /playlist/minisearch/:text
- *
+ * 
+ * body: {
+ *   limit: [int], // optional maximum number of results to return
+ * }
  * Returns: {
  *   'playlist_id': {
  *      name: string,
@@ -244,14 +247,15 @@ const addToPlaylistFromExisting = (req, response) => {
  *   ...
  * }
  */
-const miniPlaylistSearch = (req, response) => {
+const playlistSearch = (req, response) => {
+  let query = `SELECT playlist_id, name, user_id FROM playlist
+            WHERE LOWER(name) LIKE LOWER($1::text)`
+  if (req.body.limit && req.body.limit > 0) {
+    query += ` LIMIT ${req.body.limit}`
+  }
   pool
     .query(
-      `
-          SELECT playlist_id, name, user_id FROM playlist
-          WHERE LOWER(name) LIKE LOWER($1::text)
-          LIMIT 5
-        `,
+      query,
       [`%${req.params.text}%`]
     )
     .then(results => {
@@ -272,5 +276,5 @@ module.exports = {
   removeSong,
   listPlaylists,
   addToPlaylistFromExisting,
-  miniPlaylistSearch,
+  playlistSearch,
 };
