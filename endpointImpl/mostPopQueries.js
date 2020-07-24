@@ -9,7 +9,7 @@ const getTop20Songs = (_, response) => {
   pool
     .query(
       `
-            SELECT S.song_id, S.name as song_name, A.name as artist_name, Al.name as album_name, video_duration
+            SELECT S.song_id, S.name as song_name, A.name as artist_name, Al.name as album_name, video_duration, video_id
             FROM song S 
                 INNER JOIN wrote W on S.song_id = W.song_id
                 INNER JOIN artist A on W.artist_id = A.artist_id
