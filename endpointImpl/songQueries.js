@@ -18,7 +18,7 @@ const searchText = (req, response) => {
   pool
     .query(
       `
-        SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, video_duration,
+        SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, video_duration, video_id,
         ( S.song_id IN (
           SELECT song_id 
           FROM in_playlist
