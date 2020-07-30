@@ -12,9 +12,5 @@ router.get('/list/:userId', queries.listPlaylists);
 router.post('/createFromExisting', queries.addToPlaylistFromExisting);
 
 router.post('/search/:text', queries.playlistSearch);
-// Future endpoints:
-//    /playlist               POST      createPlaylist
-//    /playlist/:playlistId   DELETE    deletePlaylist
-//    /playlist/:playlistId   PATCH     renamePlaylist
 
 module.exports = router;
