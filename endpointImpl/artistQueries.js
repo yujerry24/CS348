@@ -3,7 +3,7 @@ const { formatArtists } = require('./utils');
 
 /*
  * GET
- * /artist/minisearch/:text
+ * /artist/search/:text
  *
  * body: {
  *   limit: [int], // optional maximum number of results to return
@@ -17,15 +17,12 @@ const { formatArtists } = require('./utils');
  */
 const artistSearch = (req, response) => {
   let query = `SELECT artist_id, name FROM artist 
-            WHERE LOWER(name) LIKE LOWER($1::text)`
+            WHERE LOWER(name) LIKE LOWER($1::text)`;
   if (req.body.limit && req.body.limit > 0) {
-    query += ` LIMIT ${req.body.limit}`
+    query += ` LIMIT ${req.body.limit}`;
   }
   pool
-    .query(
-      query,
-      [`%${req.params.text}%`]
-    )
+    .query(query, [`%${req.params.text}%`])
     .then(results => {
       const formatData = formatArtists(results);
       response.status(200).json(formatData);
