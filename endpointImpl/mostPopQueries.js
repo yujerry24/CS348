@@ -3,13 +3,18 @@ const { formatSongs } = require('./utils');
 
 /*
  * GET
- * /song/popularSongs
+ * /song/popularSongs/:userId
  */
-const getTop20Songs = (_, response) => {
+const getTop20Songs = (req, response) => {
   pool
     .query(
       `
-            SELECT S.song_id, S.name as song_name, A.name as artist_name, Al.name as album_name, video_duration, video_id
+            SELECT S.song_id, S.name as song_name, A.name as artist_name, Al.name as album_name, video_duration, video_id,
+            ( S.song_id IN (
+              SELECT song_id 
+              FROM in_playlist
+              WHERE playlist_id=$1::text)
+              ) as isFavourite
             FROM song S 
                 INNER JOIN wrote W on S.song_id = W.song_id
                 INNER JOIN artist A on W.artist_id = A.artist_id
@@ -23,7 +28,8 @@ const getTop20Songs = (_, response) => {
                     ) AS in_play LIMIT 20
                 )
             )
-        `
+        `,
+      [`${req.params.userId}-liked-songs`]
     )
     .then(results => {
       const formatData = formatSongs(results);

@@ -12,6 +12,8 @@ const {
 const song = require('./endpoints/song');
 const playlist = require('./endpoints/playlist');
 const user = require('./endpoints/user');
+const artist = require('./endpoints/artist');
+const album = require('./endpoints/album');
 
 app.set('port', PORT);
 app.use(cors());
@@ -35,6 +37,8 @@ app.delete('/playlist1', removeSongPlaylist1);
 app.use('/song', song);
 app.use('/playlist', playlist);
 app.use('/user', user);
+app.use('/artist', artist);
+app.use('/album', album);
 
 // Future endpoints:
 //    /artist/:text -- find artists by searching text (will look by artist name, song name, and album name)
