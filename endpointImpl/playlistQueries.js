@@ -121,10 +121,10 @@ const addSong = async (req, response) => {
           return arr.concat(
             req.body.songIds.map(songId => {
               return pool
-                .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [
-                  songId,
-                  playlistId,
-                ])
+                .query(
+                  `INSERT INTO in_playlist VALUES ($1::text, $2::text) ON CONFLICT DO NOTHING;`,
+                  [songId, playlistId]
+                )
                 .then(() => {
                   return `Succesfully added ${songId} into ${playlistId}`;
                 })
