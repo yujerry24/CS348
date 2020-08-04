@@ -57,6 +57,9 @@ SELECT playlist_id, name
   FROM playlist
   WHERE user_id = 'Timothy';
 
+SELECT playlist_id, name, user_id FROM playlist
+  WHERE LOWER(name) LIKE LOWER('%play%') AND playlist_id NOT LIKE '%-liked-songs';
+
 SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, S.video_duration,
  ( S.song_id IN (
    SELECT song_id 
@@ -156,4 +159,28 @@ INSERT INTO in_playlist (song_id, playlist_id) VALUES (
 
 SELECT * FROM "user" WHERE user_id = 'Timothy';
 
-INSERT INTO "user" VALUES ('Tommy');
+INSERT INTO "user" VALUES ('Timothy');
+
+SELECT album_id, name FROM album WHERE LOWER(name) LIKE LOWER('%play%') LIMIT 5;
+
+SELECT song_id, song_num, name, video_duration, disc_num, video_id,
+  ( song_id IN (
+    SELECT song_id 
+    FROM in_playlist
+    WHERE playlist_id='Timothy-liked-songs')
+    ) as isFavourite
+  FROM song
+  WHERE album_id = '03eUMhwODEJRYsYEiqtOpo'
+  ORDER BY song_num;
+
+SELECT artist_id, name FROM artist WHERE LOWER(name) LIKE LOWER('%Day%') LIMIT 5;
+
+SELECT song.song_id, song.name as song_name, video_duration, video_id,
+  ( song.song_id IN (
+    SELECT song_id 
+    FROM in_playlist
+    WHERE playlist_id = 'Timothy-liked-songs')
+    ) as isFavourite
+  FROM wrote INNER JOIN song ON wrote.song_id = song.song_id
+  WHERE wrote.artist_id = '5TnQc2N1iKlFjYD7CPGvFc'
+  ORDER BY song.name;

@@ -1,6 +1,8 @@
-        song_id         |      song_name       | artist_name |         album_name         | video_duration | isfavourite
-------------------------+----------------------+-------------+----------------------------+----------------+-------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie               | DAY6        | The Book of Us : The Demon |            213 | t
- 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | BAEKHYUN    | Puberty BookⅡ Pum          |            203 | f
- 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | Bolbbalgan4 | Puberty BookⅡ Pum          |            203 | f
-(3 rows)
+        song_id         |               song_name               | artist_name | album_name  | video_duration |  video_id   | isfavourite
+------------------------+---------------------------------------+-------------+-------------+----------------+-------------+-------------
+ 0slrpwbibfQNxpjqmgtkUh | My Flower                             | JBJ         | True Colors |            207 | uexk7jWXYmU | f
+ 2qwyjoSsSr3M7HTt611Q5O | Wind flower                           | Mamamoo     | BLUE;S      |            234 | q1-_9O-lX6E | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Giriboy     | PEOPLE      |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Code Kunst  | PEOPLE      |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Jay Park    | PEOPLE      |            275 | m8Z-YANwihM | f
+(5 rows)

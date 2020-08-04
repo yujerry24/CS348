@@ -1,10 +1,9 @@
-        song_id         | song_name  | artist_name |          album_name           | video_duration | isfavourite
-------------------------+------------+-------------+-------------------------------+----------------+-------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie     | DAY6        | The Book of Us : The Demon    |            213 | t
- 53LEFZFqPLoN0tWwaTk17C | The One    | EXO-CBX     | Hey Mama!– The 1st Mini Album |            161 | f
- 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone          |            329 | f
- 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                       |            216 | f
-(4 rows)
+        song_id         | song_name  | artist_name |          album_name           | video_duration |  video_id   | isfavourite
+------------------------+------------+-------------+-------------------------------+----------------+-------------+-------------
+ 53LEFZFqPLoN0tWwaTk17C | The One    | EXO-CBX     | Hey Mama!– The 1st Mini Album |            161 | 6T8Iy2lktgo | f
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone          |            329 | xEeFrLSkMm8 | t
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                       |            216 | wPCh5I_R0ro | f
+(3 rows)
 
 INSERT 0 1
 INSERT 0 8
@@ -22,12 +21,26 @@ DELETE 1
  bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist3
 (5 rows)
 
-        song_id         |      song_name       | artist_name |         album_name         | video_duration | isfavourite
-------------------------+----------------------+-------------+----------------------------+----------------+-------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie               | DAY6        | The Book of Us : The Demon |            213 | t
- 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | BAEKHYUN    | Puberty BookⅡ Pum          |            203 | f
- 1Rk53ni9MhBXiksSSaKN7Y | Leo (feat. BAEKHYUN) | Bolbbalgan4 | Puberty BookⅡ Pum          |            203 | f
-(3 rows)
+             playlist_id              |                                               name                                               |   user_id
+--------------------------------------+--------------------------------------------------------------------------------------------------+-------------
+ 78ea8c22-1c5f-45b6-9a2d-386ba998d512 | My playlist                                                                                      | Timothy
+ bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist1                                                                                        | Timothy
+ 0c1966b6-4903-4caa-b997-706f6f174095 | Playlist2                                                                                        | Timothy
+ 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd | Playlist with long name                                                                          | Timothy
+ 7813b0c1-829f-4b21-a197-35a148abd906 | testPlaylist                                                                                     | testuser123
+ 62e3138f-6334-40c6-8e74-0bd68b21856a | my1stplaylis                                                                                     | Frank
+ 712148b9-bb15-4dc0-9bcf-fc6627b7a893 | this is a super long playlist name to test super long playlist names because flexible containers | newUser2
+ 80fb38a9-8934-4b4d-84cc-9f18f262ee32 | first playlist                                                                                   | thomas
+(8 rows)
+
+        song_id         |               song_name               | artist_name | album_name  | video_duration |  video_id   | isfavourite
+------------------------+---------------------------------------+-------------+-------------+----------------+-------------+-------------
+ 0slrpwbibfQNxpjqmgtkUh | My Flower                             | JBJ         | True Colors |            207 | uexk7jWXYmU | f
+ 2qwyjoSsSr3M7HTt611Q5O | Wind flower                           | Mamamoo     | BLUE;S      |            234 | q1-_9O-lX6E | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Giriboy     | PEOPLE      |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Code Kunst  | PEOPLE      |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Jay Park    | PEOPLE      |            275 | m8Z-YANwihM | f
+(5 rows)
 
     artist_name    | in_num_of_playlists 
 -------------------+---------------------
@@ -44,29 +57,32 @@ DELETE 1
  TWICE             |                   1
 (11 rows)
 
-        song_id         |               song_name                | video_duration |                    album_name                    |    artist_name    
-------------------------+----------------------------------------+----------------+--------------------------------------------------+-------------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie                                 |            213 | The Book of Us : The Demon                       | DAY6
- 71vPAjlG1x606483GTJNhY | FIESTA                                 |            218 | BLOOM*IZ                                         | IZ*ONE
- 5KqOPtE8nhYtgcXzrIt6N0 | A Song Written Easily                  |            273 | IN ITS TIME                                      | ONEUS
- 3ZWCWArPYr1v0iF763oSOz | Crossroads                             |            296 | 回:LABYRINTH                                     | GFRIEND
- 4as4XEOR03oGm1STUKl6pa | BBIBBI                                 |            209 | BBIBBI                                           | IU
- 3y7ByLZ05tluscOTRgEJ9Y | Palette (Feat. G-DRAGON)               |            219 | Palette                                          | IU
- 5kFakScPV7ZWXStUSvQmxA | BABE                                   |            204 | Following                                        | HyunA
- 1uszVo0bVPALn32ix2kJ9e | Shoot Me                               |            180 | Shoot Me : Youth Part 1                          | DAY6
- 24nK8tW7Pt3Inh2utttuoG | HIP                                    |            211 | reality in BLACK                                 | Mamamoo
- 0u7aRGM7YmvtsmG5NSrNsO | Feel Special                           |            221 | Feel Special                                     | TWICE
- 60zxdAqWtdDu0vYsbXViA7 | FANCY                                  |            219 | FANCY YOU                                        | TWICE
- 4dOrfL6qgxnjCMSmkekFhB | Gleam                                  |            189 | Gleam                                            | Mamamoo
- 3LvD7wWPrcp8jqPSmaaVAc | The Boys                               |            320 | The Boys                                         | Girls' Generation
- 5SE57ljOIUJ1ybL9U6CuBH | DNA                                    |            256 | Love Yourself 承 'Her'                           | BTS
- 6JdS5rJvJaRA7B1tcm7kxZ | Dionysus                               |            298 | MAP OF THE SOUL : PERSONA                        | BTS
- 5RGf8qn1TBWVplLyyKUsuV | Blood Sweat & Tears                    |            364 | Wings                                            | BTS
- 3p5PbT7QMSQpTG5X1qUqk1 | Love Is Not Over (Full Length Edition) |            224 | The Most Beautiful Moment in Life: Young Forever | BTS
- 0WNGsQ1oAuHzNTk8jivBKW | Spring Day                             |            329 | You Never Walk Alone                             | BTS
- 5mejZAeca4Ry7Sptw7LnvS | Catch Me If You Can - Korean Version   |            263 | Catch Me If You Can                              | Girls' Generation
- 7k1YG4KliiXCVawNyvwT7X | SHE BAD                                |            216 | F;UZZLE                                          | MYTEEN
-(20 rows)
+        song_id         |               song_name               |    artist_name    |          album_name           | video_duration |  video_id   | isfavourite
+------------------------+---------------------------------------+-------------------+-------------------------------+----------------+-------------+-------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie                                | DAY6              | The Book of Us : The Demon    |            213 | WehhSc1knYY | f
+ 5c1XGYFuC16Z7FIvWu6S0j | Filter                                | BTS               | MAP OF THE SOUL : 7           |            181 | dNUnnb8F-Cw | f
+ 71vPAjlG1x606483GTJNhY | FIESTA                                | IZ*ONE            | BLOOM*IZ                      |            218 | eDEFolvLn0A | f
+ 5KqOPtE8nhYtgcXzrIt6N0 | A Song Written Easily                 | ONEUS             | IN ITS TIME                   |            273 | JMCUMBLAYFQ | f
+ 4as4XEOR03oGm1STUKl6pa | BBIBBI                                | IU                | BBIBBI                        |            209 | nM0xDI5R50E | f
+ 53LEFZFqPLoN0tWwaTk17C | The One                               | EXO-CBX           | Hey Mama!– The 1st Mini Album |            161 | 6T8Iy2lktgo | f
+ 0uak6K95JcYexDgqHmh5cc | PARTY                                 | Girls' Generation | Lion Heart - The 5th Album    |            218 | HQzu7NYlZNQ | f
+ 5kFakScPV7ZWXStUSvQmxA | BABE                                  | HyunA             | Following                     |            204 | b9xndFqGJ4k | f
+ 1uszVo0bVPALn32ix2kJ9e | Shoot Me                              | DAY6              | Shoot Me : Youth Part 1       |            180 | g2X2LdJAIpU | f
+ 481yYUbtfs67PaKYKxJOeF | SEE SEA                               | Hyolyn            | SEE SEA                       |            219 | PDAqx45Duqw | f
+ 0u7aRGM7YmvtsmG5NSrNsO | Feel Special                          | TWICE             | Feel Special                  |            221 | 3ymwOvzhwHs | f
+ 1fRaznZsAB2i63TtmYv2Hc | La Vie en Rose                        | IZ*ONE            | COLOR*IZ                      |            220 | WZwr2a_lFWY | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Code Kunst        | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Giriboy           | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Jay Park          | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Woo               | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 6JdS5rJvJaRA7B1tcm7kxZ | Dionysus                              | BTS               | MAP OF THE SOUL : PERSONA     |            298 | -moUJ3Lw_TQ | f
+ 5RGf8qn1TBWVplLyyKUsuV | Blood Sweat & Tears                   | BTS               | Wings                         |            364 | hmE9f-TEutc | f
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day                            | BTS               | You Never Walk Alone          |            329 | xEeFrLSkMm8 | f
+ 5mejZAeca4Ry7Sptw7LnvS | Catch Me If You Can - Korean Version  | Girls' Generation | Catch Me If You Can           |            263 | b09U0KLv6I4 | f
+ 4mXEyvBmSPjS0SywQWWiwe | WE LIKE 2 PARTY                       | BIGBANG           | MADE                          |            207 | oFmfi1vM7co | f
+ 1FBuZzEpuLvmcFBumBLBxp | Secret Time                           | Spica             | Secret Time                   |            206 | ep5X71Lqg1M | f
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD                               | MYTEEN            | F;UZZLE                       |            216 | wPCh5I_R0ro | f
+(23 rows)
 
 INSERT 0 1
 
@@ -78,3 +94,34 @@ Query returned successfully in 118 msec.
 (1 row)
 
 INSERT 0 1
+
+        album_id        |                          name
+------------------------+---------------------------------------------------------
+ 1F7DAPXJpLVKfyZFSFsrCw | PLAY - The 8th Album
+ 5uxH9so2Yrmi6nLClUZJkv | REPLAY - The 8th Repackage Album
+ 0qXdSJ3TqYmGEjaLTsmGvr | Cherry Bullet 1st Single Album Let's Play Cherry Bullet
+ 18HdZzO0yOrCUccxZonxHX | Piano Dreamers Play Blackpink (Instrumental)
+ 3z2xxOJKI2kUYvp6qAwOI1 | Piano Dreamers Play BTS, Vol. 2
+(5 rows)
+
+        song_id         | song_num |  name  | video_duration | disc_num |  video_id   | isfavourite
+------------------------+----------+--------+----------------+----------+-------------+-------------
+ 5jJzrVQqZ6S1k74i8TYtsr |        3 | Melted |            317 |        1 | sUCIzn0mRHc | f
+(1 row)
+
+       artist_id        |       name
+------------------------+------------------
+ 5TnQc2N1iKlFjYD7CPGvFc | DAY6
+ 68pkG6Uj3mPO0QPc8kJeWb | Ho1iday 홀리데이
+ 4UeJgAodtmUXfxU1GoJUph | Saturday
+ 13kJgvU22LHMsJtGWLmx7W | Girl's Day
+ 1GEHPQlE1qVumD2LIpyCyf | DAY6 데이식스
+(5 rows)
+
+        song_id         |           song_name           | video_duration |  video_id   | isfavourite
+------------------------+-------------------------------+----------------+-------------+-------------
+ 4cwCVB09LU2UGNwVsWiTgW | 누군가 필요해 I Need Somebody |            229 | j-TcFt2OVSw | f
+ 1uszVo0bVPALn32ix2kJ9e | Shoot Me                      |            180 | g2X2LdJAIpU | t
+ 3cl6BsTDeeGRbgug5TXrvg | Shoot Me                      |            180 | g2X2LdJAIpU | f
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie                        |            213 | WehhSc1knYY | t
+(4 rows)

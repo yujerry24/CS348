@@ -1,0 +1,16 @@
+       artist_id        |       name
+------------------------+------------------
+ 5TnQc2N1iKlFjYD7CPGvFc | DAY6
+ 68pkG6Uj3mPO0QPc8kJeWb | Ho1iday 홀리데이
+ 4UeJgAodtmUXfxU1GoJUph | Saturday
+ 13kJgvU22LHMsJtGWLmx7W | Girl's Day
+ 1GEHPQlE1qVumD2LIpyCyf | DAY6 데이식스
+(5 rows)
+
+        song_id         |           song_name           | video_duration |  video_id   | isfavourite
+------------------------+-------------------------------+----------------+-------------+-------------
+ 4cwCVB09LU2UGNwVsWiTgW | 누군가 필요해 I Need Somebody |            229 | j-TcFt2OVSw | f
+ 1uszVo0bVPALn32ix2kJ9e | Shoot Me                      |            180 | g2X2LdJAIpU | t
+ 3cl6BsTDeeGRbgug5TXrvg | Shoot Me                      |            180 | g2X2LdJAIpU | f
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie                        |            213 | WehhSc1knYY | t
+(4 rows)

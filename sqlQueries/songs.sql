@@ -1,9 +1,9 @@
-SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, S.video_duration,
- ( S.song_id IN (
-   SELECT song_id 
-   FROM in_playlist
-   WHERE playlist_id='Timothy-liked-songs')
-   ) as isFavourite
+SELECT S.song_id, S.name as song_name, AR.name as artist_name, AL.name as album_name, video_duration, video_id,
+  ( S.song_id IN (
+    SELECT song_id 
+    FROM in_playlist
+    WHERE playlist_id='Timothy')
+    ) as isFavourite
 FROM song S
   INNER JOIN wrote W ON S.song_id = W.song_id
   INNER JOIN artist AR ON W.artist_id = AR.artist_id
@@ -12,19 +12,7 @@ WHERE (
   S.song_id IN (
     SELECT song_id 
     FROM song
-    WHERE LOWER(song.name) LIKE LOWER('%book%')
-  )
-) OR (
-  S.song_id IN (
-    SELECT song_id 
-    FROM wrote INNER JOIN artist ON wrote.artist_id = artist.artist_id 
-    WHERE LOWER(artist.name) LIKE LOWER('%book%')
-  )
-) OR (
-  S.song_id IN (
-    SELECT song_id 
-    FROM song INNER JOIN album ON song.album_id = album.album_id 
-    WHERE LOWER(album.name) LIKE LOWER('%book%')
+    WHERE LOWER(song.name) LIKE LOWER('%Flower%')
   )
 )
-LIMIT 30;
+LIMIT 5;

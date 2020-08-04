@@ -1,10 +1,9 @@
-        song_id         | song_name  | artist_name |          album_name           | video_duration | isfavourite
-------------------------+------------+-------------+-------------------------------+----------------+-------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie     | DAY6        | The Book of Us : The Demon    |            213 | t
- 53LEFZFqPLoN0tWwaTk17C | The One    | EXO-CBX     | Hey Mama!– The 1st Mini Album |            161 | f
- 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone          |            329 | f
- 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                       |            216 | f
-(4 rows)
+        song_id         | song_name  | artist_name |          album_name           | video_duration |  video_id   | isfavourite
+------------------------+------------+-------------+-------------------------------+----------------+-------------+-------------
+ 53LEFZFqPLoN0tWwaTk17C | The One    | EXO-CBX     | Hey Mama!– The 1st Mini Album |            161 | 6T8Iy2lktgo | f
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day | BTS         | You Never Walk Alone          |            329 | xEeFrLSkMm8 | t
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD    | MYTEEN      | F;UZZLE                       |            216 | wPCh5I_R0ro | f
+(3 rows)
 
 INSERT 0 1
 INSERT 0 8
@@ -21,3 +20,15 @@ DELETE 1
  0c1966b6-4903-4caa-b997-706f6f174095 | Playlist2
  bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist3
 (5 rows)
+
+             playlist_id              |                                               name                                               |   user_id
+--------------------------------------+--------------------------------------------------------------------------------------------------+-------------
+ 78ea8c22-1c5f-45b6-9a2d-386ba998d512 | My playlist                                                                                      | Timothy
+ bb862326-05da-4a45-8c9b-7c66c1ffc0b1 | Playlist1                                                                                        | Timothy
+ 0c1966b6-4903-4caa-b997-706f6f174095 | Playlist2                                                                                        | Timothy
+ 2d7f55f0-6c7b-460c-948b-74b6e6cee6cd | Playlist with long name                                                                          | Timothy
+ 7813b0c1-829f-4b21-a197-35a148abd906 | testPlaylist                                                                                     | testuser123
+ 62e3138f-6334-40c6-8e74-0bd68b21856a | my1stplaylis                                                                                     | Frank
+ 712148b9-bb15-4dc0-9bcf-fc6627b7a893 | this is a super long playlist name to test super long playlist names because flexible containers | newUser2
+ 80fb38a9-8934-4b4d-84cc-9f18f262ee32 | first playlist                                                                                   | thomas
+(8 rows)

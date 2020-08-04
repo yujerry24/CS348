@@ -1,23 +1,26 @@
-        song_id         |               song_name                | video_duration |                    album_name                    |    artist_name    
-------------------------+----------------------------------------+----------------+--------------------------------------------------+-------------------
- 4s0dJmVknlUl7V6oK3puzZ | Zombie                                 |            213 | The Book of Us : The Demon                       | DAY6
- 71vPAjlG1x606483GTJNhY | FIESTA                                 |            218 | BLOOM*IZ                                         | IZ*ONE
- 5KqOPtE8nhYtgcXzrIt6N0 | A Song Written Easily                  |            273 | IN ITS TIME                                      | ONEUS
- 3ZWCWArPYr1v0iF763oSOz | Crossroads                             |            296 | 回:LABYRINTH                                     | GFRIEND
- 4as4XEOR03oGm1STUKl6pa | BBIBBI                                 |            209 | BBIBBI                                           | IU
- 3y7ByLZ05tluscOTRgEJ9Y | Palette (Feat. G-DRAGON)               |            219 | Palette                                          | IU
- 5kFakScPV7ZWXStUSvQmxA | BABE                                   |            204 | Following                                        | HyunA
- 1uszVo0bVPALn32ix2kJ9e | Shoot Me                               |            180 | Shoot Me : Youth Part 1                          | DAY6
- 24nK8tW7Pt3Inh2utttuoG | HIP                                    |            211 | reality in BLACK                                 | Mamamoo
- 0u7aRGM7YmvtsmG5NSrNsO | Feel Special                           |            221 | Feel Special                                     | TWICE
- 60zxdAqWtdDu0vYsbXViA7 | FANCY                                  |            219 | FANCY YOU                                        | TWICE
- 4dOrfL6qgxnjCMSmkekFhB | Gleam                                  |            189 | Gleam                                            | Mamamoo
- 3LvD7wWPrcp8jqPSmaaVAc | The Boys                               |            320 | The Boys                                         | Girls' Generation
- 5SE57ljOIUJ1ybL9U6CuBH | DNA                                    |            256 | Love Yourself 承 'Her'                           | BTS
- 6JdS5rJvJaRA7B1tcm7kxZ | Dionysus                               |            298 | MAP OF THE SOUL : PERSONA                        | BTS
- 5RGf8qn1TBWVplLyyKUsuV | Blood Sweat & Tears                    |            364 | Wings                                            | BTS
- 3p5PbT7QMSQpTG5X1qUqk1 | Love Is Not Over (Full Length Edition) |            224 | The Most Beautiful Moment in Life: Young Forever | BTS
- 0WNGsQ1oAuHzNTk8jivBKW | Spring Day                             |            329 | You Never Walk Alone                             | BTS
- 5mejZAeca4Ry7Sptw7LnvS | Catch Me If You Can - Korean Version   |            263 | Catch Me If You Can                              | Girls' Generation
- 7k1YG4KliiXCVawNyvwT7X | SHE BAD                                |            216 | F;UZZLE                                          | MYTEEN
-(20 rows)
+        song_id         |               song_name               |    artist_name    |          album_name           | video_duration |  video_id   | isfavourite
+------------------------+---------------------------------------+-------------------+-------------------------------+----------------+-------------+-------------
+ 4s0dJmVknlUl7V6oK3puzZ | Zombie                                | DAY6              | The Book of Us : The Demon    |            213 | WehhSc1knYY | f
+ 5c1XGYFuC16Z7FIvWu6S0j | Filter                                | BTS               | MAP OF THE SOUL : 7           |            181 | dNUnnb8F-Cw | f
+ 71vPAjlG1x606483GTJNhY | FIESTA                                | IZ*ONE            | BLOOM*IZ                      |            218 | eDEFolvLn0A | f
+ 5KqOPtE8nhYtgcXzrIt6N0 | A Song Written Easily                 | ONEUS             | IN ITS TIME                   |            273 | JMCUMBLAYFQ | f
+ 4as4XEOR03oGm1STUKl6pa | BBIBBI                                | IU                | BBIBBI                        |            209 | nM0xDI5R50E | f
+ 53LEFZFqPLoN0tWwaTk17C | The One                               | EXO-CBX           | Hey Mama!– The 1st Mini Album |            161 | 6T8Iy2lktgo | f
+ 0uak6K95JcYexDgqHmh5cc | PARTY                                 | Girls' Generation | Lion Heart - The 5th Album    |            218 | HQzu7NYlZNQ | f
+ 5kFakScPV7ZWXStUSvQmxA | BABE                                  | HyunA             | Following                     |            204 | b9xndFqGJ4k | f
+ 1uszVo0bVPALn32ix2kJ9e | Shoot Me                              | DAY6              | Shoot Me : Youth Part 1       |            180 | g2X2LdJAIpU | f
+ 481yYUbtfs67PaKYKxJOeF | SEE SEA                               | Hyolyn            | SEE SEA                       |            219 | PDAqx45Duqw | f
+ 0u7aRGM7YmvtsmG5NSrNsO | Feel Special                          | TWICE             | Feel Special                  |            221 | 3ymwOvzhwHs | f
+ 1fRaznZsAB2i63TtmYv2Hc | La Vie en Rose                        | IZ*ONE            | COLOR*IZ                      |            220 | WZwr2a_lFWY | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Code Kunst        | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Giriboy           | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Jay Park          | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 0mVvkepe2sQUa0j8NWukaZ | Flower (Feat. Jay Park, Woo, GIRIBOY) | Woo               | PEOPLE                        |            275 | m8Z-YANwihM | f
+ 6JdS5rJvJaRA7B1tcm7kxZ | Dionysus                              | BTS               | MAP OF THE SOUL : PERSONA     |            298 | -moUJ3Lw_TQ | f
+ 5RGf8qn1TBWVplLyyKUsuV | Blood Sweat & Tears                   | BTS               | Wings                         |            364 | hmE9f-TEutc | f
+ 0WNGsQ1oAuHzNTk8jivBKW | Spring Day                            | BTS               | You Never Walk Alone          |            329 | xEeFrLSkMm8 | f
+ 5mejZAeca4Ry7Sptw7LnvS | Catch Me If You Can - Korean Version  | Girls' Generation | Catch Me If You Can           |            263 | b09U0KLv6I4 | f
+ 4mXEyvBmSPjS0SywQWWiwe | WE LIKE 2 PARTY                       | BIGBANG           | MADE                          |            207 | oFmfi1vM7co | f
+ 1FBuZzEpuLvmcFBumBLBxp | Secret Time                           | Spica             | Secret Time                   |            206 | ep5X71Lqg1M | f
+ 7k1YG4KliiXCVawNyvwT7X | SHE BAD                               | MYTEEN            | F;UZZLE                       |            216 | wPCh5I_R0ro | f
+(23 rows)

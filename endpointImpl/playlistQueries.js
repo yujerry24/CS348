@@ -121,10 +121,10 @@ const addSong = async (req, response) => {
           return arr.concat(
             req.body.songIds.map(songId => {
               return pool
-                .query(`INSERT INTO in_playlist VALUES ($1::text, $2::text)`, [
-                  songId,
-                  playlistId,
-                ])
+                .query(
+                  `INSERT INTO in_playlist VALUES ($1::text, $2::text) ON CONFLICT DO NOTHING;`,
+                  [songId, playlistId]
+                )
                 .then(() => {
                   return `Succesfully added ${songId} into ${playlistId}`;
                 })
@@ -249,7 +249,7 @@ const addToPlaylistFromExisting = (req, response) => {
  */
 const playlistSearch = (req, response) => {
   let query = `SELECT playlist_id, name, user_id FROM playlist
-            WHERE LOWER(name) LIKE LOWER($1::text)`;
+            WHERE LOWER(name) LIKE LOWER($1::text) AND playlist_id NOT LIKE '%-liked-songs'`;
   if (req.body.limit && req.body.limit > 0) {
     query += ` LIMIT ${req.body.limit}`;
   }
