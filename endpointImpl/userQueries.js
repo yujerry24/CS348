@@ -77,7 +77,7 @@ const createUser = (req, response) => {
           [req.body.userId+'-liked-songs', 'My Liked Songs', req.body.userId]
         )
         .then(() => {
-          output += 'Deleted the playlist.\n';
+          output += 'Created the liked playlist.\n';
           response.status(200).send(output);
         });
   })
