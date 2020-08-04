@@ -1,0 +1,13 @@
+        album_id        |                          name
+------------------------+---------------------------------------------------------
+ 1F7DAPXJpLVKfyZFSFsrCw | PLAY - The 8th Album
+ 5uxH9so2Yrmi6nLClUZJkv | REPLAY - The 8th Repackage Album
+ 0qXdSJ3TqYmGEjaLTsmGvr | Cherry Bullet 1st Single Album Let's Play Cherry Bullet
+ 18HdZzO0yOrCUccxZonxHX | Piano Dreamers Play Blackpink (Instrumental)
+ 3z2xxOJKI2kUYvp6qAwOI1 | Piano Dreamers Play BTS, Vol. 2
+(5 rows)
+
+        song_id         | song_num |  name  | video_duration | disc_num |  video_id   | isfavourite
+------------------------+----------+--------+----------------+----------+-------------+-------------
+ 5jJzrVQqZ6S1k74i8TYtsr |        3 | Melted |            317 |        1 | sUCIzn0mRHc | f
+(1 row)

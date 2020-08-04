@@ -1,12 +1,12 @@
 -- list the songs that are in a playlist
 -- $1: playlist id 
 -- ex.8092bcc7-37ee-4114-bc5e-eac125b3bb9b
-SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration,
- ( S.song_id IN (
-   SELECT song_id 
-   FROM in_playlist
-   WHERE playlist_id='Timothy-liked-songs')
-   ) as isFavourite
+SELECT S.song_id, S.name as song_name, artist.name as artist_name, album.name as album_name, video_duration, video_id,
+  ( S.song_id IN (
+    SELECT song_id 
+    FROM in_playlist
+    WHERE playlist_id='Timothy-liked-songs')
+    ) as isFavourite
 FROM song S 
   INNER JOIN in_playlist ON S.song_id = in_playlist.song_id
   INNER JOIN wrote ON S.song_id = wrote.song_id
@@ -45,7 +45,9 @@ DELETE FROM playlist WHERE playlist_id = 'fakeId'; -- delete the playlist
 -- add a song to a playlist
 -- $1: song_id, $2: playlist_id
 -- ex. song_id = '0SdMLlsw5FOEbHJmJs8aUA', playlist_id = '8092bcc7-37ee-4114-bc5e-eac125b3bb9b'
-INSERT INTO in_playlist VALUES ('0SdMLlsw5FOEbHJmJs8aUA', '8092bcc7-37ee-4114-bc5e-eac125b3bb9b');
+INSERT INTO in_playlist 
+VALUES ('0SdMLlsw5FOEbHJmJs8aUA', '8092bcc7-37ee-4114-bc5e-eac125b3bb9b')
+ON CONFLICT DO NOTHING;
 
 -- delete a song from a playlist
 -- $1: song_id, $2: playlist_id
@@ -58,3 +60,9 @@ DELETE FROM in_playlist WHERE song_id = '0SdMLlsw5FOEbHJmJs8aUA' AND playlist_id
 SELECT playlist_id, name 
   FROM playlist
   WHERE user_id = 'Timothy';
+
+-- search for playlists that have $1 as a substring in the name
+-- $1: string
+-- ex. $1 = 'play'
+SELECT playlist_id, name, user_id FROM playlist
+  WHERE LOWER(name) LIKE LOWER('%play%') AND playlist_id NOT LIKE '%-liked-songs';
