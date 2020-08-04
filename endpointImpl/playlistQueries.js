@@ -249,7 +249,7 @@ const addToPlaylistFromExisting = (req, response) => {
  */
 const playlistSearch = (req, response) => {
   let query = `SELECT playlist_id, name, user_id FROM playlist
-            WHERE LOWER(name) LIKE LOWER($1::text) AND playlist_id NOT LIKE`;
+            WHERE LOWER(name) LIKE LOWER($1::text) AND playlist_id NOT LIKE '%-liked-songs'`;
   if (req.body.limit && req.body.limit > 0) {
     query += ` LIMIT ${req.body.limit}`;
   }
