@@ -1,6 +1,7 @@
 import json
 import requests
 
+# Script for pulling data from the youtube api, except google is hella stingy with their api daily usage so not practical
 key = 'ya29.a0AfH6SMA5bl_I963L2Wd_7ZE34hbz_V3TvWtz5JecYAt9P4Wc1gql6aKM7FKILtvz29_DlcmcD1MJLSXirzSt2P3620q4bX3mXwIden6X4UVjEfRzFpBZMPlg0wTlfkdpOTrP1OHGXuOeKac8MQc5Wtpj4VjZvbP1e-fpNDXt'
 # apikey = "AIzaSyDcaZ2egOmTqJ97-ymDs3QUhjorgMsYcIM"
 apikey = "AIzaSyDfbNrqCcb6zfeHubhuUkyC7KOTEzlFRcE"
