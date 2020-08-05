@@ -17,8 +17,9 @@ print("SIZE: " + str(len(albumData)))
 
 newDict = []
 for key in albumData:
+    for artist_id in albumData[key]:
         newDict.append({'album_id' : key,
-                        'artist_id' : albumData[key][0]})
+                        'artist_id' : artist_id})
 
 with open("DATA/producedTable.json", "w+") as f:
     json.dump(newDict, f)
