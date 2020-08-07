@@ -161,6 +161,8 @@ SELECT * FROM "user" WHERE user_id = 'Timothy';
 
 INSERT INTO "user" VALUES ('Timothy');
 
+INSERT INTO playlist VALUES ('Timothy-liked-songs', 'My Liked Songs', 0, 'Timothy');
+
 SELECT album_id, name FROM album WHERE LOWER(name) LIKE LOWER('%play%') LIMIT 5;
 
 SELECT song_id, song_num, name, video_duration, disc_num, video_id,

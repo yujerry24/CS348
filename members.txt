@@ -8,6 +8,7 @@ Jackie Chen:
 - Created login screen with user validation
 - Added queries to create users and to find specific users
 - Set up backend endpoints for various user actions
+- Implemented playing music using youtube videos
 
 Thomas Cheng:
 - Found the dataset
@@ -18,6 +19,7 @@ Thomas Cheng:
 - Created navigation between searching for songs vs viewing a playlist
 - Wrote SQL queries that return the 20 most popular songs and artists across all playlists
 - Implemented api endpoint and frontend features to support new popularity query
+- Add fixes that cover certain edges cases such as redesigning the create playlist page when no other playlists exist yet
 
 Hannah Li:
 - Proposed idea
@@ -28,8 +30,8 @@ Hannah Li:
 - Wrote sql queries that are necessary for the basic features of the application
 - Implemented the initial queries in api endpoints
 - Wrote the queries for searching, creating playlists, deleting playlists, adding and removing songs from playlists, and fetching playlists
-- Implemented the above queries/actions into the front-end applications
 - Added Redux to the application to improve management of data on the front-end
+- Implemented the sub query for songs based on an artist/album/playlist in the search tab
 
 Frank Wu:
 - Wrote parts of the report
@@ -41,8 +43,8 @@ Frank Wu:
 - Refactor front end code to decouple API calling functions and improve variable naming
 - Wrote SQL Query for creating playlists based with other existing playlists
 - Set up backend endpoint for creating playlists with other existing playlists
-- Created front-end create playlist page 
-
+- Created front-end create playlist page
+- Redesigned the search to perform mini searches by category (song, artist, album, playlist) which can be expanded to reveal more search results
 
 Jerry Yu:
 - Wrote parts of the report
@@ -53,4 +55,6 @@ Jerry Yu:
 - Ran the sql commands to create the database
 - Dumped the data into the database
 - Wrote queries to create and update a liked songs playlist
-- Added btree indices to optimize search
+- Added b tree indices to optimize search
+- Implemented the ‘liked song’ feature which is represented with a heart icon
+- Ensure that the heart icon information for a song is consistent everywhere in the application

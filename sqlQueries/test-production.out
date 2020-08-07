@@ -95,6 +95,8 @@ Query returned successfully in 118 msec.
 
 INSERT 0 1
 
+INSERT 0 1
+
         album_id        |                          name
 ------------------------+---------------------------------------------------------
  1F7DAPXJpLVKfyZFSFsrCw | PLAY - The 8th Album
