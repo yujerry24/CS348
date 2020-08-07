@@ -17,7 +17,8 @@ print("SIZE: " + str(len(albumData)))
 
 newDict = []
 for key in albumData:
-        newDict.append({'artist_id' : albumData[key][0],
+    for artist_id in albumData[key]:
+        newDict.append({'artist_id' : artist_id,
                         'song_id' : key})
 
 with open("DATA/wroteTable.json", "w+") as f:
